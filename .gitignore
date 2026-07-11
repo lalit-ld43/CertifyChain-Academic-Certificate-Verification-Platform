@@ -14,7 +14,6 @@ packages/shared/dist/
 # Rust / Soroban
 contracts/**/target/
 contracts/**/.soroban/
-Cargo.lock
 
 # Env files
 .env
