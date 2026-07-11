@@ -1,0 +1,13 @@
+process.env.NODE_ENV = 'test';
+process.env.MONGODB_URI ??= 'mongodb://127.0.0.1:27017/certifychain_test';
+process.env.JWT_ACCESS_SECRET ??= 'test_access_secret_at_least_32_characters_long';
+process.env.JWT_REFRESH_SECRET ??= 'test_refresh_secret_at_least_32_characters_long';
+process.env.CLIENT_URL ??= 'http://localhost:5173';
+process.env.STELLAR_NETWORK_PASSPHRASE ??= 'Test SDF Network ; September 2015';
+process.env.STELLAR_RPC_URL ??= 'https://soroban-testnet.stellar.org';
+process.env.HORIZON_URL ??= 'https://horizon-testnet.stellar.org';
+process.env.CONTRACT_ID ??= 'CTESTCONTRACTID';
+process.env.CLOUDINARY_CLOUD_NAME ??= 'test_cloud';
+process.env.CLOUDINARY_API_KEY ??= 'test_key';
+process.env.CLOUDINARY_API_SECRET ??= 'test_secret';
+process.env.ADMIN_EMAIL ??= 'admin@example.com';

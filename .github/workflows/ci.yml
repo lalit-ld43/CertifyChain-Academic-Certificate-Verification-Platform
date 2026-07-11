@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  frontend-backend:
+    name: Lint, Typecheck, Test, Build (web + api)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Backend tests
+        run: npm run test --workspace=apps/api
+
+      - name: Frontend tests
+        run: npm run test --workspace=apps/web
+
+      - name: Build shared package
+        run: npm run build --workspace=packages/shared
+
+      - name: Build backend
+        run: npm run build --workspace=apps/api
+
+      - name: Build frontend
+        run: npm run build --workspace=apps/web
+
+  contract:
+    name: Soroban contract tests + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
+          override: true
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            contracts/credential_registry/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('contracts/credential_registry/Cargo.lock') }}
+
+      - name: Run contract tests
+        working-directory: contracts/credential_registry
+        run: cargo test
+
+      - name: Build contract wasm
+        working-directory: contracts/credential_registry
+        run: cargo build --target wasm32-unknown-unknown --release
+
+# Note: this workflow intentionally does NOT deploy anywhere. Deployment to
+# Vercel/Render/Testnet is a manual, documented step (docs/deployment.md)
+# until deployment secrets are explicitly configured by the repository owner.
