@@ -87,7 +87,9 @@ export async function verifyByCredentialId(req: Request, res: Response) {
 }
 
 export async function verifyByShareToken(req: Request, res: Response) {
-  const tokenHash = createHash('sha256').update(req.params.token ?? '').digest('hex');
+  const tokenHash = createHash('sha256')
+    .update(req.params.token ?? '')
+    .digest('hex');
   const share = await ShareLinkModel.findOne({ tokenHash });
   if (!share || !share.isActive) {
     throw new AppError('SHARE_LINK_INACTIVE' as any, 'This share link is no longer active', 410);
