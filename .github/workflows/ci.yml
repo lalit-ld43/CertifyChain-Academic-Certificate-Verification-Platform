@@ -14,7 +14,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - name: Install dependencies
@@ -70,10 +70,35 @@ jobs:
         working-directory: contracts/credential_registry
         run: cargo test
 
-      - name: Build contract wasm
-        working-directory: contracts/credential_registry
-        run: cargo build --target wasm32-unknown-unknown --release
+      - name: Install cargo-binstall
+        run: curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
-# Note: this workflow intentionally does NOT deploy anywhere. Deployment to
-# Vercel/Render/Testnet is a manual, documented step (docs/deployment.md)
-# until deployment secrets are explicitly configured by the repository owner.
+      - name: Install Stellar CLI
+        run: cargo binstall --no-confirm stellar-cli
+
+      - name: Build contracts
+        working-directory: contracts/credential_registry
+        run: |
+          cargo build --target wasm32-unknown-unknown --release
+          stellar contract optimize --wasm target/wasm32-unknown-unknown/release/credential_registry.wasm
+
+      - name: Deploy to Testnet
+        working-directory: contracts/credential_registry
+        run: |
+          echo "Generating identities..."
+          stellar network add --global testnet --rpc-url https://soroban-testnet.stellar.org:443 --network-passphrase "Test SDF Network ; September 2015"
+          stellar keys generate deployer --network testnet
+          stellar keys fund deployer --network testnet
+
+          echo "Deploying Contract..."
+          CONTRACT_ID=$(stellar contract deploy \
+            --wasm target/wasm32-unknown-unknown/release/credential_registry.optimized.wasm \
+            --source deployer \
+            --network testnet 2>deploy_err.log) || { cat deploy_err.log; exit 1; }
+          echo "========================================================"
+          echo "Contract deployed at: $CONTRACT_ID"
+          
+          echo "Fetching Test Token (Native XLM asset) ID..."
+          TOKEN_ID=$(stellar contract id asset --asset native --network testnet)
+          echo "Native Token ID is: $TOKEN_ID"
+          echo "========================================================"
