@@ -32,7 +32,15 @@ export default function LoginPage() {
       track(AnalyticsEvent.USER_LOGGED_IN);
       toast.success('Welcome back!');
       const role = res.data.data.user.role;
-      navigate(role === 'student' ? '/student/dashboard' : role === 'institution' ? '/institution/dashboard' : role === 'admin' ? '/admin/dashboard' : '/');
+      navigate(
+        role === 'student'
+          ? '/student/dashboard'
+          : role === 'institution'
+            ? '/institution/dashboard'
+            : role === 'admin'
+              ? '/admin/dashboard'
+              : '/',
+      );
     } catch (err) {
       toast.error(extractErrorMessage(err));
     } finally {
@@ -48,7 +56,10 @@ export default function LoginPage() {
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-8 space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-primary-700 dark:text-primary-200"
+            >
               Email
             </label>
             <input
@@ -67,7 +78,10 @@ export default function LoginPage() {
             )}
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-primary-700 dark:text-primary-200"
+            >
               Password
             </label>
             <input
@@ -78,7 +92,9 @@ export default function LoginPage() {
               className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm focus:border-accent-500 focus:outline-none dark:border-primary-700 dark:bg-primary-900"
               aria-invalid={!!errors.password}
             />
-            {errors.password && <p className="mt-1 text-xs text-status-revoked">{errors.password.message}</p>}
+            {errors.password && (
+              <p className="mt-1 text-xs text-status-revoked">{errors.password.message}</p>
+            )}
           </div>
           <button
             type="submit"

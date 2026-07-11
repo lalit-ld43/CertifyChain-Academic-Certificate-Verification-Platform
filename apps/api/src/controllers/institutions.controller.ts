@@ -1,5 +1,9 @@
 import type { Request, Response } from 'express';
-import { institutionApplicationSchema, paginationSchema, InstitutionStatus } from '@certifychain/shared';
+import {
+  institutionApplicationSchema,
+  paginationSchema,
+  InstitutionStatus,
+} from '@certifychain/shared';
 import { InstitutionModel } from '../models/Institution.js';
 import { AppError } from '../utils/AppError.js';
 
@@ -30,7 +34,9 @@ export async function apply(req: Request, res: Response) {
   if (existing) throw AppError.validation('You have already submitted an institution application.');
 
   const institution = await InstitutionModel.create({ ...input, ownerUserId: req.auth.sub });
-  res.status(201).json({ success: true, data: toInstitutionDTO(institution), requestId: req.requestId });
+  res
+    .status(201)
+    .json({ success: true, data: toInstitutionDTO(institution), requestId: req.requestId });
 }
 
 export async function me(req: Request, res: Response) {

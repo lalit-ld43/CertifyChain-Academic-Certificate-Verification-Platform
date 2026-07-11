@@ -32,7 +32,10 @@ export function initAnalytics(): void {
  * registration numbers, certificate numbers, full wallet addresses, grades,
  * or certificate contents (spec §22) — pass only anonymized/internal ids.
  */
-export function track(event: AnalyticsEvent, properties?: Record<string, string | number | boolean>): void {
+export function track(
+  event: AnalyticsEvent,
+  properties?: Record<string, string | number | boolean>,
+): void {
   if (!initialized) return;
   posthog.capture(event, properties);
 }

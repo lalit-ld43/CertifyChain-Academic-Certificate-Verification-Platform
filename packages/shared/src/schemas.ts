@@ -82,15 +82,20 @@ export const credentialIssueSchema = z
     certificateNumber: z.string().trim().min(2).max(100),
   })
   .strict()
-  .refine(
-    (data) => !data.expiryDate || new Date(data.expiryDate) > new Date(data.issueDate),
-    { message: 'Expiry date must be after issue date', path: ['expiryDate'] },
-  );
+  .refine((data) => !data.expiryDate || new Date(data.expiryDate) > new Date(data.issueDate), {
+    message: 'Expiry date must be after issue date',
+    path: ['expiryDate'],
+  });
 export type CredentialIssueInput = z.infer<typeof credentialIssueSchema>;
 
 export const shareLinkCreateSchema = z
   .object({
-    expiresInHours: z.number().int().min(1).max(24 * 90).optional(),
+    expiresInHours: z
+      .number()
+      .int()
+      .min(1)
+      .max(24 * 90)
+      .optional(),
     maxViews: z.number().int().min(1).max(10000).optional(),
   })
   .strict();
@@ -103,7 +108,13 @@ export const revokeCredentialSchema = z
 
 export const feedbackSchema = z
   .object({
-    role: z.enum([UserRole.STUDENT, UserRole.INSTITUTION, UserRole.RECRUITER, UserRole.ADMIN, 'guest']),
+    role: z.enum([
+      UserRole.STUDENT,
+      UserRole.INSTITUTION,
+      UserRole.RECRUITER,
+      UserRole.ADMIN,
+      'guest',
+    ]),
     rating: z.number().int().min(1).max(5),
     usabilityRating: z.number().int().min(1).max(5),
     trustRating: z.number().int().min(1).max(5),

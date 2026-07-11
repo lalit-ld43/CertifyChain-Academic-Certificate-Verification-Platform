@@ -26,7 +26,9 @@ export async function stats(_req: Request, res: Response) {
     CredentialModel.countDocuments({ status: CredentialStatus.REVOKED }),
     VerificationLogModel.countDocuments(),
     WalletInteractionModel.countDocuments(),
-    FeedbackModel.aggregate([{ $group: { _id: null, avg: { $avg: '$rating' }, count: { $sum: 1 } } }]),
+    FeedbackModel.aggregate([
+      { $group: { _id: null, avg: { $avg: '$rating' }, count: { $sum: 1 } } },
+    ]),
   ]);
 
   res.json({
@@ -53,7 +55,9 @@ export async function listInstitutions(req: Request, res: Response) {
   if (q) filter.displayName = { $regex: q, $options: 'i' };
 
   const [items, total] = await Promise.all([
-    InstitutionModel.find(filter).skip((page - 1) * pageSize).limit(pageSize),
+    InstitutionModel.find(filter)
+      .skip((page - 1) * pageSize)
+      .limit(pageSize),
     InstitutionModel.countDocuments(filter),
   ]);
   res.json({
@@ -64,7 +68,9 @@ export async function listInstitutions(req: Request, res: Response) {
 }
 
 export async function getInstitution(req: Request, res: Response) {
-  const institution = await InstitutionModel.findById(req.params.id).select('+verificationDocuments');
+  const institution = await InstitutionModel.findById(req.params.id).select(
+    '+verificationDocuments',
+  );
   if (!institution) throw AppError.notFound('Institution not found');
   res.json({ success: true, data: institution, requestId: req.requestId });
 }
@@ -119,7 +125,9 @@ export async function listUsers(req: Request, res: Response) {
   if (q) filter.email = { $regex: q, $options: 'i' };
 
   const [items, total] = await Promise.all([
-    UserModel.find(filter).skip((page - 1) * pageSize).limit(pageSize),
+    UserModel.find(filter)
+      .skip((page - 1) * pageSize)
+      .limit(pageSize),
     UserModel.countDocuments(filter),
   ]);
   res.json({
@@ -132,7 +140,10 @@ export async function listUsers(req: Request, res: Response) {
 export async function listCredentials(req: Request, res: Response) {
   const { page, pageSize } = paginationSchema.parse(req.query);
   const [items, total] = await Promise.all([
-    CredentialModel.find().sort({ createdAt: -1 }).skip((page - 1) * pageSize).limit(pageSize),
+    CredentialModel.find()
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize),
     CredentialModel.countDocuments(),
   ]);
   res.json({
@@ -145,7 +156,10 @@ export async function listCredentials(req: Request, res: Response) {
 export async function listFeedback(req: Request, res: Response) {
   const { page, pageSize } = paginationSchema.parse(req.query);
   const [items, total] = await Promise.all([
-    FeedbackModel.find().sort({ createdAt: -1 }).skip((page - 1) * pageSize).limit(pageSize),
+    FeedbackModel.find()
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize),
     FeedbackModel.countDocuments(),
   ]);
   res.json({

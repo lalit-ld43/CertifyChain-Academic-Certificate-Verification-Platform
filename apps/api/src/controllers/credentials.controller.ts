@@ -137,7 +137,11 @@ export async function list(req: Request, res: Response) {
       : { studentUserId: req.auth.sub };
 
   const credentials = await CredentialModel.find(filter).sort({ createdAt: -1 }).limit(100);
-  res.json({ success: true, data: credentials.map((c) => toCredentialDTO(c)), requestId: req.requestId });
+  res.json({
+    success: true,
+    data: credentials.map((c) => toCredentialDTO(c)),
+    requestId: req.requestId,
+  });
 }
 
 async function institutionIdForUser(userId: string) {

@@ -2,7 +2,10 @@ import clsx from 'clsx';
 import { CheckCircle2, XCircle, Clock, HelpCircle, ShieldAlert } from 'lucide-react';
 import type { VerificationResult } from '@certifychain/shared';
 
-const config: Record<VerificationResult, { label: string; className: string; Icon: typeof CheckCircle2 }> = {
+const config: Record<
+  VerificationResult,
+  { label: string; className: string; Icon: typeof CheckCircle2 }
+> = {
   valid: { label: 'Valid', className: 'status-badge-valid', Icon: CheckCircle2 },
   revoked: { label: 'Revoked', className: 'status-badge-revoked', Icon: XCircle },
   expired: { label: 'Expired', className: 'status-badge-expired', Icon: Clock },
