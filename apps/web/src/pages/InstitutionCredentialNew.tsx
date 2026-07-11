@@ -112,10 +112,14 @@ export default function InstitutionCredentialNewPage() {
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-8 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+            <label
+              htmlFor="studentWalletAddress"
+              className="block text-sm font-medium text-primary-700 dark:text-primary-200"
+            >
               Student wallet address
             </label>
             <input
+              id="studentWalletAddress"
               {...register('studentWalletAddress')}
               placeholder="G..."
               className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm font-mono focus:border-accent-500 focus:outline-none dark:border-primary-700 dark:bg-primary-900"
@@ -129,10 +133,14 @@ export default function InstitutionCredentialNewPage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+              <label
+                htmlFor="credentialType"
+                className="block text-sm font-medium text-primary-700 dark:text-primary-200"
+              >
                 Credential type
               </label>
               <select
+                id="credentialType"
                 {...register('credentialType')}
                 className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm dark:border-primary-700 dark:bg-primary-900"
               >
@@ -144,10 +152,14 @@ export default function InstitutionCredentialNewPage() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+              <label
+                htmlFor="certificateNumber"
+                className="block text-sm font-medium text-primary-700 dark:text-primary-200"
+              >
                 Certificate number
               </label>
               <input
+                id="certificateNumber"
                 {...register('certificateNumber')}
                 className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm dark:border-primary-700 dark:bg-primary-900"
               />
@@ -160,10 +172,14 @@ export default function InstitutionCredentialNewPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+            <label
+              htmlFor="courseName"
+              className="block text-sm font-medium text-primary-700 dark:text-primary-200"
+            >
               Course / Program name
             </label>
             <input
+              id="courseName"
               {...register('courseName')}
               className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm dark:border-primary-700 dark:bg-primary-900"
             />
@@ -174,10 +190,14 @@ export default function InstitutionCredentialNewPage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+              <label
+                htmlFor="issueDate"
+                className="block text-sm font-medium text-primary-700 dark:text-primary-200"
+              >
                 Issue date
               </label>
               <input
+                id="issueDate"
                 type="date"
                 {...register('issueDate')}
                 className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm dark:border-primary-700 dark:bg-primary-900"
@@ -187,10 +207,14 @@ export default function InstitutionCredentialNewPage() {
               )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+              <label
+                htmlFor="expiryDate"
+                className="block text-sm font-medium text-primary-700 dark:text-primary-200"
+              >
                 Expiry date (optional)
               </label>
               <input
+                id="expiryDate"
                 type="date"
                 {...register('expiryDate')}
                 className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm dark:border-primary-700 dark:bg-primary-900"

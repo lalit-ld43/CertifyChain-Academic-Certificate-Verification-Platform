@@ -39,15 +39,16 @@ async function refreshAccessToken(): Promise<string | null> {
 api.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
-    const original = error.config;
-    if (error.response?.status === 401 && original && !(original as any)._retry) {
-      (original as any)._retry = true;
+    const original = error.config as typeof error.config & { _retry?: boolean };
+    if (error.response?.status === 401 && original && !original._retry) {
+      original._retry = true;
       refreshPromise ??= refreshAccessToken();
       const newToken = await refreshPromise;
       refreshPromise = null;
       if (newToken) {
         original.headers = original.headers ?? {};
-        (original.headers as any).Authorization = `Bearer ${newToken}`;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        (original.headers as Record<string, unknown>).Authorization = `Bearer ${newToken}`;
         return api(original);
       }
       useAuthStore.getState().clear();
