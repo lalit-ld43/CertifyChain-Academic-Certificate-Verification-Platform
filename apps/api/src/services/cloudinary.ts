@@ -32,7 +32,7 @@ export async function uploadCertificateFile(
 
 /** Generates a short-lived signed URL for authorized download. */
 export function getSignedDownloadUrl(publicId: string): string {
-  return cloudinary.utils.private_download_url(publicId, undefined, {
+  return cloudinary.utils.private_download_url(publicId, '', {
     resource_type: 'auto',
     type: 'authenticated',
     expires_at: Math.floor(Date.now() / 1000) + 60 * 10, // 10 minutes
