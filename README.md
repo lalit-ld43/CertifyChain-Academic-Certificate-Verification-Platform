@@ -4,7 +4,7 @@
 
 ## 🚀 Quick Links
 - **Live Platform**: [certifychain.vercel.app](https://certifychain.vercel.app) *(Placeholder)*
-- **Demo Video**: [Watch the Demo](#) *(Placeholder)*
+- **Demo Video**: [Watch the Demo](https://drive.google.com/file/d/1WSV6MVlQKfstvySNlAqYRVm9AudT2UV_/view?usp=sharing)
 - **Contract Deployment Address**: `CALMPJ7RWXQTVLNEOMDKTEPTYNWKRI7STLJBS54PGR6FQFCEGKK74Q6S` *(Placeholder)*
 - **User Feedback Form**: [CertifyChain Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLSdpyani5-iJCVfaJXmDxVOQFlRyZB2dXKn0EV-p6XN7sfIjPw/viewform)
 - **User Feedback Responses**: [View Responses Sheet Link](https://docs.google.com/spreadsheets/d/10DTjiTcudefdawKpVzW1mtRQenlJTWqGwp3PAQ95iZE/edit?gid=350563831#gid=350563831)
