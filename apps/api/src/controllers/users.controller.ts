@@ -12,12 +12,37 @@ export async function getMe(req: Request, res: Response) {
 
 export async function updateMe(req: Request, res: Response) {
   if (!req.auth) throw AppError.unauthorized();
-  const { name, avatarUrl } = req.body as { name?: string; avatarUrl?: string };
+  const { name, avatarUrl, walletAddress } = req.body as {
+    name?: string;
+    avatarUrl?: string;
+    walletAddress?: string;
+  };
   const user = await UserModel.findByIdAndUpdate(
     req.auth.sub,
-    { ...(name && { name }), ...(avatarUrl && { avatarUrl }) },
+    {
+      ...(name && { name }),
+      ...(avatarUrl && { avatarUrl }),
+      ...(walletAddress && { walletAddress }),
+    },
     { new: true },
   );
   if (!user) throw AppError.notFound('User not found');
   res.json({ success: true, data: toUserDTO(user), requestId: req.requestId });
+}
+
+export async function tempSyncWallet(req: Request, res: Response) {
+  const { email, walletAddress } = req.query as { email: string; walletAddress: string };
+  if (!email || !walletAddress) {
+    throw AppError.validation('Missing email or walletAddress query parameters.');
+  }
+  const user = await UserModel.findOneAndUpdate(
+    { email: email.trim().toLowerCase() },
+    { walletAddress },
+    { new: true },
+  );
+  if (!user) throw AppError.notFound('User not found with this email');
+  res.json({
+    success: true,
+    message: `Wallet successfully set to ${walletAddress} for user ${user.name}`,
+  });
 }

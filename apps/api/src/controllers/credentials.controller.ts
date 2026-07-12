@@ -121,6 +121,7 @@ export async function prepareIssuance(req: Request, res: Response) {
   try {
     const horizon = new Horizon.Server('https://horizon-testnet.stellar.org');
     const walletAddress = institution.walletAddress as string;
+    const studentWalletAddress = input.studentWalletAddress;
     let sourceAccount;
     try {
       sourceAccount = await horizon.loadAccount(walletAddress);
@@ -132,13 +133,25 @@ export async function prepareIssuance(req: Request, res: Response) {
       sourceAccount = await horizon.loadAccount(walletAddress);
     }
 
+    // Automatically check if the student wallet is funded, and fund it if necessary
+    try {
+      await horizon.loadAccount(studentWalletAddress);
+    } catch (e) {
+      try {
+        await fetch(`https://friendbot.stellar.org/?addr=${studentWalletAddress}`);
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+      } catch (err) {
+        // ignore student friendbot failures to prevent blocking the flow
+      }
+    }
+
     const tx = new TransactionBuilder(sourceAccount, {
       fee: '100',
       networkPassphrase: Networks.TESTNET,
     })
       .addOperation(
         Operation.payment({
-          destination: walletAddress, // Self-payment to act as a notary timestamp
+          destination: studentWalletAddress, // Send to the student's wallet address
           asset: Asset.native(),
           amount: '0.0000001',
         }),
@@ -233,10 +246,18 @@ export async function confirmIssuance(req: Request, res: Response) {
 
 export async function list(req: Request, res: Response) {
   if (!req.auth) throw AppError.unauthorized();
+  const { UserModel } = await import('../models/User.js');
+  const user = await UserModel.findById(req.auth.sub);
+
   const filter =
     req.auth.role === 'institution'
       ? { institutionId: await institutionIdForUser(req.auth.sub) }
-      : { studentUserId: req.auth.sub };
+      : {
+          $or: [
+            { studentUserId: req.auth.sub },
+            ...(user?.walletAddress ? [{ studentWalletAddress: user.walletAddress }] : []),
+          ],
+        };
 
   const credentials = await CredentialModel.find(filter).sort({ createdAt: -1 }).limit(100);
   res.json({
