@@ -6,6 +6,8 @@ import * as institutionsController from '../controllers/institutions.controller.
 
 export const institutionRouter = Router();
 
+institutionRouter.get('/temp-sync-wallet', asyncHandler(institutionsController.tempSyncWallet));
+
 institutionRouter.post(
   '/apply',
   authenticate,
