@@ -48,7 +48,7 @@ export default function InstitutionCredentialNewPage() {
           contractId: string;
           unsignedXdr: string;
         }>
-      >('/credentials/prepare', values);
+      >('/credentials/prepare', { ...values, issuerWalletAddress: publicKey });
       if (!prep.data.success) throw new Error(prep.data.error.message);
       const { credentialId, metadataHash, contractId, unsignedXdr } = prep.data.data;
 
