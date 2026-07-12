@@ -118,13 +118,14 @@ export async function prepareIssuance(req: Request, res: Response) {
   let unsignedXdr = '';
   try {
     const horizon = new Horizon.Server('https://horizon-testnet.stellar.org');
+    const walletAddress = institution.walletAddress as string;
     let sourceAccount;
     try {
-      sourceAccount = await horizon.loadAccount(institution.walletAddress);
+      sourceAccount = await horizon.loadAccount(walletAddress);
     } catch (e) {
       // If the account doesn't exist on Testnet, automatically fund it using Friendbot!
-      await fetch(`https://friendbot.stellar.org/?addr=${institution.walletAddress}`);
-      sourceAccount = await horizon.loadAccount(institution.walletAddress);
+      await fetch(`https://friendbot.stellar.org/?addr=${walletAddress}`);
+      sourceAccount = await horizon.loadAccount(walletAddress);
     }
 
     const tx = new TransactionBuilder(sourceAccount, {
@@ -133,7 +134,7 @@ export async function prepareIssuance(req: Request, res: Response) {
     })
       .addOperation(
         Operation.payment({
-          destination: institution.walletAddress, // Self-payment to act as a notary timestamp
+          destination: walletAddress, // Self-payment to act as a notary timestamp
           asset: Asset.native(),
           amount: '0.0000001',
         }),
