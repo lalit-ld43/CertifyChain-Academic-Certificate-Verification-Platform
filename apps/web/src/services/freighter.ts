@@ -71,6 +71,7 @@ export async function signWithFreighter(
   xdr: string,
   opts: { networkPassphrase: string; address: string },
 ): Promise<string> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result = await signTransaction(xdr, {
     network: 'TESTNET',
     networkPassphrase: opts.networkPassphrase || 'Test SDF Network ; September 2015',
