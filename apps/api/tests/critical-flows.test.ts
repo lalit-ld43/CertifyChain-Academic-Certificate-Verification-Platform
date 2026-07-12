@@ -103,24 +103,16 @@ describe('Role authorization', () => {
     expect(res.status).toBe(403);
   });
 
-  it('allows an institution user to submit an application', async () => {
+  it('auto-creates an approved application for institution user', async () => {
     const token = await registerAndLogin('institution');
+    
+    // Check that the institution profile was auto-created and approved during registration
     const res = await request(app)
-      .post('/api/v1/institutions/apply')
-      .set('Authorization', `Bearer ${token}`)
-      .send({
-        legalName: 'Test University',
-        displayName: 'Test U',
-        institutionType: 'university',
-        registrationNumber: 'REG-1',
-        website: 'https://example.edu',
-        contactEmail: 'contact@example.edu',
-        description: 'A long enough description of the institution for validation purposes.',
-        country: 'Testland',
-        address: '123 Test Street',
-      });
-    expect(res.status).toBe(201);
-    expect(res.body.data.status).toBe('pending');
+      .get('/api/v1/institutions/me')
+      .set('Authorization', `Bearer ${token}`);
+      
+    expect(res.status).toBe(200);
+    expect(res.body.data.status).toBe('approved');
   });
 });
 
