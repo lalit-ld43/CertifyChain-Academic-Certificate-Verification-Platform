@@ -80,6 +80,7 @@ export const credentialIssueSchema = z
     issueDate: dateStringSchema,
     expiryDate: dateStringSchema.nullable().optional(),
     certificateNumber: z.string().trim().min(2).max(100),
+    issuerWalletAddress: stellarAddressSchema.optional(),
   })
   .strict()
   .refine((data) => !data.expiryDate || new Date(data.expiryDate) > new Date(data.issueDate), {
