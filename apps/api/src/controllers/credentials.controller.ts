@@ -1,6 +1,14 @@
 import type { Request, Response } from 'express';
 import { randomUUID, createHash } from 'node:crypto';
 import {
+  Horizon,
+  TransactionBuilder,
+  Networks,
+  Operation,
+  Asset,
+  Memo,
+} from '@stellar/stellar-sdk';
+import {
   credentialIssueSchema,
   revokeCredentialSchema,
   shareLinkCreateSchema,
@@ -104,9 +112,35 @@ export async function prepareIssuance(req: Request, res: Response) {
   });
   const metadataHash = hashCanonicalMetadataNode(metadata);
 
+  // REAL BLOCKCHAIN TRANSACTION: Build an unsigned XDR that anchors the credential hash to the Stellar ledger
+  let unsignedXdr = '';
+  try {
+    const horizon = new Horizon.Server('https://horizon-testnet.stellar.org');
+    const sourceAccount = await horizon.loadAccount(institution.walletAddress);
+    const tx = new TransactionBuilder(sourceAccount, {
+      fee: '100',
+      networkPassphrase: Networks.TESTNET,
+    })
+      .addOperation(
+        Operation.payment({
+          destination: institution.walletAddress, // Self-payment to act as a notary timestamp
+          asset: Asset.native(),
+          amount: '0.0000001',
+        }),
+      )
+      .addMemo(Memo.hash(metadataHash))
+      .setTimeout(120)
+      .build();
+    unsignedXdr = tx.toXDR();
+  } catch (err) {
+    throw AppError.validation(
+      'Institution wallet must be funded on the Testnet to issue credentials. Please fund it first!',
+    );
+  }
+
   res.json({
     success: true,
-    data: { credentialId, metadata, metadataHash, contractId: env.CONTRACT_ID },
+    data: { credentialId, metadata, metadataHash, contractId: env.CONTRACT_ID, unsignedXdr },
     requestId: req.requestId,
   });
 }
@@ -121,12 +155,26 @@ export async function confirmIssuance(req: Request, res: Response) {
   if (!req.auth) throw AppError.unauthorized();
   // Bypass strict schema parsing since req.body includes extra fields not in credentialIssueSchema
   const input = req.body;
-  const { credentialId, metadataHash, documentHash, issueTxHash } = req.body as {
+  const { credentialId, metadataHash, documentHash, signedXdr } = req.body as {
     credentialId: string;
     metadataHash: string;
     documentHash: string;
-    issueTxHash: string;
+    signedXdr: string;
   };
+
+  if (!signedXdr) throw AppError.validation('Missing signed transaction payload.');
+
+  let issueTxHash = '';
+  try {
+    const horizon = new Horizon.Server('https://horizon-testnet.stellar.org');
+    const tx = TransactionBuilder.fromXDR(signedXdr, Networks.TESTNET);
+    const response = await horizon.submitTransaction(tx as any);
+    issueTxHash = response.hash;
+  } catch (err) {
+    throw AppError.validation(
+      'Failed to submit transaction to the Stellar Network. It may have been rejected.',
+    );
+  }
 
   const institution = await InstitutionModel.findOne({ ownerUserId: req.auth.sub });
   if (!institution) throw AppError.notFound('Institution not found');
