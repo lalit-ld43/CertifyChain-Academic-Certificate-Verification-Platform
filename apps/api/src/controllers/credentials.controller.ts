@@ -88,11 +88,13 @@ export async function prepareIssuance(req: Request, res: Response) {
     await institution.save();
   }
 
-  // DEMO HOTFIX: Sync wallet address from User model to Institution model if missing
-  if (!institution.walletAddress) {
+  // DEMO HOTFIX: Sync real wallet address from frontend directly to Institution model
+  if (req.body.issuerWalletAddress) {
+    institution.walletAddress = req.body.issuerWalletAddress;
+    await institution.save();
+  } else if (!institution.walletAddress) {
     const { UserModel } = await import('../models/User.js');
     const user = await UserModel.findById(req.auth.sub);
-    // If the frontend didn't save the wallet to the backend user profile yet, just use a placeholder
     institution.walletAddress = user?.walletAddress || 'G_DEMO_' + Date.now();
     await institution.save();
   }
@@ -116,7 +118,15 @@ export async function prepareIssuance(req: Request, res: Response) {
   let unsignedXdr = '';
   try {
     const horizon = new Horizon.Server('https://horizon-testnet.stellar.org');
-    const sourceAccount = await horizon.loadAccount(institution.walletAddress);
+    let sourceAccount;
+    try {
+      sourceAccount = await horizon.loadAccount(institution.walletAddress);
+    } catch (e) {
+      // If the account doesn't exist on Testnet, automatically fund it using Friendbot!
+      await fetch(`https://friendbot.stellar.org/?addr=${institution.walletAddress}`);
+      sourceAccount = await horizon.loadAccount(institution.walletAddress);
+    }
+
     const tx = new TransactionBuilder(sourceAccount, {
       fee: '100',
       networkPassphrase: Networks.TESTNET,
