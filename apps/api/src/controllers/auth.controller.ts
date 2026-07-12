@@ -41,6 +41,26 @@ export async function register(req: Request, res: Response) {
 
   const accessToken = signAccessToken({ sub: String(user._id), role: user.role });
   const refreshToken = signRefreshToken(String(user._id));
+
+  // DEMO HOTFIX: Auto-create an approved Institution profile so they don't get stuck waiting for Admin approval
+  if (input.role === 'institution') {
+    const { InstitutionModel } = await import('../models/Institution.js');
+    const { InstitutionStatus } = await import('@certifychain/shared');
+    await InstitutionModel.create({
+      ownerUserId: user._id,
+      legalName: input.name,
+      displayName: input.name,
+      institutionType: 'UNIVERSITY',
+      registrationNumber: 'DEMO-REG-' + Date.now(),
+      website: 'https://demo.certifychain.com',
+      contactEmail: input.email,
+      description: 'Automatically approved institution for demo purposes.',
+      country: 'Demo',
+      address: 'Demo Address',
+      status: InstitutionStatus.APPROVED,
+    });
+  }
+
   res.cookie(REFRESH_COOKIE, refreshToken, cookieOpts);
 
   res.status(201).json({
