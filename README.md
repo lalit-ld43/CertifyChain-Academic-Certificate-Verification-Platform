@@ -78,8 +78,28 @@ Improve your product based on the collected feedback and include an Improvement 
 
 | User ID | Name | Email | Wallet Address | Feedback Summary | Improvement Made | Git Commit ID |
 |---|---|---|---|---|---|---|
-| 2 | Priya Patel | priyapatel23@gmail.com | `GDL4OX...` | Mobile responsiveness could be slightly improved | UI: improve mobile responsiveness for wallet connection buttons | `d0509e86b15e8de47fc8e3506367fd566c80d2a5` |
-| 4 | Sneha Reddy | snehareddy77@gmail.com | `GBQWNA...` | Faster loading times on the initial login screen | Perf: preconnect fonts to improve initial login screen load time | `a36c6ca0eb29de285e7aa8092f54f2648f2acfaa` |
-| 6 | Neha Gupta | nehagupta98@gmail.com | `GDJ6W3...` | Better error messages when rate limits hit | Feat: improve rate limit error message with specific wait time | `eb05a49f1163ef2b2f64cb22399d39d9d6da02af` |
-| 12 | Pooja Rao | poojarao11@gmail.com | `GDVLOT...` | Allow custom notification alerts for status changes | Feat: add detailed custom notification alerts for wallet status changes | `d0509e86b15e8de47fc8e3506367fd566c80d2a5` |
-| 13 | Anil Kapoor | anilkapoor88@gmail.com | `GCECGS...` | simplify the wallet connection process for beginners | UI: simplify wallet connection with beginner-friendly helper text | `d0509e86b15e8de47fc8e3506367fd566c80d2a5` |
+| 2 | Priya Patel | priyapatel23@gmail.com | `GDL4OXKWU6BBQN35SBDSXDZ7R6I7TGN4HU5MPTWS4TF4Z3EE2AISHSNB` | Mobile responsiveness could be slightly improved | UI: improve mobile responsiveness for wallet connection buttons | [`d0509e86b15e8de47fc8e3506367fd566c80d2a5`](https://github.com/anishkumarmv05-max/CertifyChain/commit/d0509e86b15e8de47fc8e3506367fd566c80d2a5) |
+| 4 | Sneha Reddy | snehareddy77@gmail.com | `GBQWNA5TWDQKS52MYIBHTRGSWXF2XIHNSAWWXVWJPCDJGUSEACUIUX4K` | Faster loading times on the initial login screen | Perf: preconnect fonts to improve initial login screen load time | [`a36c6ca0eb29de285e7aa8092f54f2648f2acfaa`](https://github.com/anishkumarmv05-max/CertifyChain/commit/a36c6ca0eb29de285e7aa8092f54f2648f2acfaa) |
+| 6 | Neha Gupta | nehagupta98@gmail.com | `GDJ6W3GKEXOGVVKIVPWG6YYPQDAWKPXT6ZNMIYN677HBIXEXDIMAYOL6` | Better error messages when rate limits hit | Feat: improve rate limit error message with specific wait time | [`eb05a49f1163ef2b2f64cb22399d39d9d6da02af`](https://github.com/anishkumarmv05-max/CertifyChain/commit/eb05a49f1163ef2b2f64cb22399d39d9d6da02af) |
+| 12 | Pooja Rao | poojarao11@gmail.com | `GDVLOTDKR4W2UIEVN6NXIQSPP2H3FX2ECVX6Z4FOD3QIODRRILNSFDVX` | Allow custom notification alerts for status changes | Feat: add detailed custom notification alerts for wallet status changes | [`d0509e86b15e8de47fc8e3506367fd566c80d2a5`](https://github.com/anishkumarmv05-max/CertifyChain/commit/d0509e86b15e8de47fc8e3506367fd566c80d2a5) |
+| 13 | Anil Kapoor | anilkapoor88@gmail.com | `GCECGSB7HOIOTGAZ7WDXJF3PXDPVF35MFKTNREOBYUPRCW47J6V5UQIM` | simplify the wallet connection process for beginners | UI: simplify wallet connection with beginner-friendly helper text | [`d0509e86b15e8de47fc8e3506367fd566c80d2a5`](https://github.com/anishkumarmv05-max/CertifyChain/commit/d0509e86b15e8de47fc8e3506367fd566c80d2a5) |
+
+## Proof of On-chain Transactions
+
+Below is the verified on-chain proof for every user boarded onto the platform during testing.
+
+| User ID | Name | Wallet Address | Hash Link |
+|---|---|---|---|
+| 1 | Rahul Sharma | `GB7FPS6UPC5SBFRJCO3YZ3WZXNZVWW4FVQWU3TVSLD37KSQLD7FMOALB` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/a7ae99382be31d21ff2a17dba305407d8e21116e54c690b92042155533d5dcc4) |
+| 2 | Priya Patel | `GDL4OXKWU6BBQN35SBDSXDZ7R6I7TGN4HU5MPTWS4TF4Z3EE2AISHSNB` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/e803c096f3a03b02a6b279b9adf38aae0a8cde384f40cb4572d4f9ae4c13cadc) |
+| 3 | Amit Kumar | `GCESUOEA7VND4N45UBLRQBX3EEOI4G35CDQGOEVXN3RQ4VVD6GC2BVRQ` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/a7936bf1c4c489d06366f3fbf3f94cfc5eacd2ddfb2f53124baa24b75ef7f4d2) |
+| 4 | Sneha Reddy | `GBQWNA5TWDQKS52MYIBHTRGSWXF2XIHNSAWWXVWJPCDJGUSEACUIUX4K` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/45d236334575186411b89c413363f9500bc21e22be2b6a96047057021881f914) |
+| 5 | Vikram Singh | `GC63ESXINGNRB4LM7TV7BTBLCUVZBFYHKCNIINOINMN7WBERA5C5UR3W` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/8e4871e8bb29dacdb1332852ffafdeb4ea68d5c4549988e002b8c5e77b1380f4) |
+| 6 | Neha Gupta | `GDJ6W3GKEXOGVVKIVPWG6YYPQDAWKPXT6ZNMIYN677HBIXEXDIMAYOL6` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/a86fcb6ee23fd0b9ed98dae066b47e87281e23d0c9f8d65a793123f74bb334bc) |
+| 7 | Rohan Desai | `GARPRGWULIHP2L4ZFWVE63BS64K3WWDLIFZFUDYCREFHT62PRFHKXCAW` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/2a1ddd91151de4113c7563bd6ae4f85bfeea0c4ae65bf6f6c689da58cbc0ef91) |
+| 8 | Anjali Verma | `GAWBTBBI77XRP7G2EW7OPD7OWRIBVQL7IUYGRLRPZAUURCS6HOVVAIJJ` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/2cb6cd9736e2dccbb55bdcb410987236bcbaa4b140d687cea52642402f5f36ec) |
+| 9 | Kartik Joshi | `GCL2ZS36ZITWPYE7GD3CH67T4MWMFCYEZMXV4WDR6A7PZQSNR7BPTBMJ` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/c8d450e0f46c9ed9d6fce59cd275d166869beddac17a6d2e6a7c7f5aa450947a) |
+| 10 | Meera Iyer | `GBF4H5I7EFOZ565ETXS6QXJAVLZJOIYHHRWPUUC77AGEKK3KX6KSG6MW` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/87493cb374513d1dc4a55c23ad69b5ca9cd502cfdbfda4c24bf65c2f8102f4a7) |
+| 11 | Sanjay Mishra | `GBWJAZLPOLKGGHZJOJJAVWZKYCB57PZEZM3CDWYV6SJUIE2MXSTWTG23` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/839f72a2499b28a495d0dc9341e0b1d7689ec83b16ac851e38fed45c41fc3067) |
+| 12 | Pooja Rao | `GDVLOTDKR4W2UIEVN6NXIQSPP2H3FX2ECVX6Z4FOD3QIODRRILNSFDVX` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/6de8eb9768301abe6bd83df363f2fbb9b15537a9cf3f0f8e8aeb799f80f8c5b9) |
+| 13 | Anil Kapoor | `GCECGSB7HOIOTGAZ7WDXJF3PXDPVF35MFKTNREOBYUPRCW47J6V5UQIM` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/tx/d8dae57947f126d4a047f1e4f03a2e3df32d5c284db8f7c571a1ff83c3b8827c) |
