@@ -16,7 +16,10 @@ export const authRateLimiter = rateLimit({
   limit: 20,
   standardHeaders: true,
   legacyHeaders: false,
-  handler: limiterResponse(ErrorCode.RATE_LIMITED, 'Rate limit exceeded. Please wait 15 minutes before trying again.'),
+  handler: limiterResponse(
+    ErrorCode.RATE_LIMITED,
+    'Rate limit exceeded. Please wait 15 minutes before trying again.',
+  ),
 });
 
 /** Public verification endpoints — generous but bounded, since recruiters have no account. */
