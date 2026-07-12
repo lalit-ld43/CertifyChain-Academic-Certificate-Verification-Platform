@@ -72,9 +72,10 @@ export async function signWithFreighter(
   opts: { networkPassphrase: string; address: string },
 ): Promise<string> {
   const result = await signTransaction(xdr, {
-    networkPassphrase: opts.networkPassphrase,
-    address: opts.address,
-  });
+    network: 'TESTNET',
+    networkPassphrase: opts.networkPassphrase || 'Test SDF Network ; September 2015',
+    accountToSign: opts.address,
+  } as any);
   if (result.error) {
     const message = String(result.error.message ?? '').toLowerCase();
     if (message.includes('reject') || message.includes('declin')) {
