@@ -90,14 +90,16 @@ export async function prepareIssuance(req: Request, res: Response) {
 
   // DEMO HOTFIX: Sync real wallet address from frontend directly to Institution model
   const issuerWalletAddress = input.issuerWalletAddress || req.body.issuerWalletAddress;
-  if (!issuerWalletAddress || issuerWalletAddress.startsWith('G_DEMO_')) {
+  if (issuerWalletAddress && !issuerWalletAddress.startsWith('G_DEMO_')) {
+    institution.walletAddress = issuerWalletAddress;
+    await institution.save();
+  }
+
+  if (!institution.walletAddress || institution.walletAddress.startsWith('G_DEMO_')) {
     throw AppError.validation(
       'Missing connected wallet address. Please Hard Refresh your browser (Ctrl + F5) to load the latest update, connect your wallet, and try again.',
     );
   }
-
-  institution.walletAddress = issuerWalletAddress;
-  await institution.save();
 
   const credentialId = randomUUID();
   const certificateNumber = input.certificateNumber.trim().toUpperCase();
