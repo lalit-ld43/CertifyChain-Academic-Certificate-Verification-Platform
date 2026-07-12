@@ -111,6 +111,8 @@ export async function bulkIssueDebug(req: Request, res: Response) {
       });
     }
 
+    const errors: Array<{ wallet: string; error: string }> = [];
+
     // 2. Issue certificates to the 10 students
     for (let i = 0; i < studentWallets.length; i++) {
       const studentWallet = studentWallets[i]!;
@@ -195,16 +197,20 @@ export async function bulkIssueDebug(req: Request, res: Response) {
         });
 
         console.log(`Successfully issued! Tx: ${txHash}`);
-      } catch (err) {
+      } catch (err: any) {
         console.error(`Failed to issue for ${studentWallet}:`, err);
+        errors.push({
+          wallet: studentWallet,
+          error: err.response?.data?.extras?.result_codes?.transaction || err.message || String(err),
+        });
       }
     }
 
     res.json({
       success: true,
-      message:
-        'Successfully generated 10 on-chain credential proofs from 3 different institution wallets!',
+      message: 'Completed bulk issuance debug endpoint',
       data: results,
+      errors: errors,
     });
   } catch (err: any) {
     res.status(500).json({
