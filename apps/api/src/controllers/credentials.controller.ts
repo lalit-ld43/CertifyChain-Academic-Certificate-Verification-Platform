@@ -89,8 +89,9 @@ export async function prepareIssuance(req: Request, res: Response) {
   }
 
   // DEMO HOTFIX: Sync real wallet address from frontend directly to Institution model
-  if (req.body.issuerWalletAddress) {
-    institution.walletAddress = req.body.issuerWalletAddress;
+  const issuerWalletAddress = input.issuerWalletAddress || req.body.issuerWalletAddress;
+  if (issuerWalletAddress) {
+    institution.walletAddress = issuerWalletAddress;
     await institution.save();
   } else if (!institution.walletAddress || institution.walletAddress.startsWith('G_DEMO_')) {
     const { UserModel } = await import('../models/User.js');
