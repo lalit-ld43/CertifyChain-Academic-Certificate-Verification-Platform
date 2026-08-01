@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply bg-surface-light text-primary-900 font-sans dark:bg-surface-dark dark:text-white;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent-500;
+  }
+}
+
+@layer components {
+  .status-badge-valid {
+    @apply bg-emerald-50 text-status-valid ring-1 ring-inset ring-emerald-200 dark:bg-emerald-950/40;
+  }
+  .status-badge-revoked {
+    @apply bg-red-50 text-status-revoked ring-1 ring-inset ring-red-200 dark:bg-red-950/40;
+  }
+  .status-badge-expired {
+    @apply bg-amber-50 text-status-expired ring-1 ring-inset ring-amber-200 dark:bg-amber-950/40;
+  }
+  .status-badge-pending {
+    @apply bg-indigo-50 text-status-pending ring-1 ring-inset ring-indigo-200 dark:bg-indigo-950/40;
+  }
+}
