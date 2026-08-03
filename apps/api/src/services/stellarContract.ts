@@ -35,9 +35,7 @@ export async function simulateReadOnlyCall(fnName: string, args: xdr.ScVal[]) {
 // Placeholder: in production this should be a dedicated, funded "reader"
 // account used only for simulation (never for signing real state changes).
 async function getAnyFundedSourceAccount(): Promise<string> {
-  throw new Error(
-    'Configure a dedicated Testnet reader account for read-only simulation calls.',
-  );
+  throw new Error('Configure a dedicated Testnet reader account for read-only simulation calls.');
 }
 
 export { server, contract, Networks };

@@ -20,7 +20,8 @@ export default function VerifyLandingPage() {
           Verify a certificate
         </h1>
         <p className="mt-3 text-primary-500">
-          Enter a credential ID, scan a QR code, or open a share link to check authenticity instantly.
+          Enter a credential ID, scan a QR code, or open a share link to check authenticity
+          instantly.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -44,7 +45,8 @@ export default function VerifyLandingPage() {
 
         <div className="mt-6 flex items-center justify-center gap-2 text-sm text-primary-400">
           <Upload className="h-4 w-4" />
-          Have the certificate file instead? Open any credential&apos;s verify page to compare its hash.
+          Have the certificate file instead? Open any credential&apos;s verify page to compare its
+          hash.
         </div>
       </div>
     </PublicLayout>

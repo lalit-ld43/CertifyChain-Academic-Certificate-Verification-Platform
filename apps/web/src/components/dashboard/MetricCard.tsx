@@ -18,7 +18,11 @@ export function MetricCard({
         <Icon className="h-4 w-4 text-accent-500" />
       </div>
       <div className="mt-2 text-2xl font-bold text-primary-900 dark:text-white">
-        {loading ? <span className="inline-block h-6 w-12 animate-pulse rounded bg-primary-100 dark:bg-primary-800" /> : value}
+        {loading ? (
+          <span className="inline-block h-6 w-12 animate-pulse rounded bg-primary-100 dark:bg-primary-800" />
+        ) : (
+          value
+        )}
       </div>
     </div>
   );

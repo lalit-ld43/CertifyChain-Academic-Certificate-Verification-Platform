@@ -121,7 +121,9 @@ export default function InstitutionCredentialNewPage() {
               className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm font-mono focus:border-accent-500 focus:outline-none dark:border-primary-700 dark:bg-primary-900"
             />
             {errors.studentWalletAddress && (
-              <p className="mt-1 text-xs text-status-revoked">{errors.studentWalletAddress.message}</p>
+              <p className="mt-1 text-xs text-status-revoked">
+                {errors.studentWalletAddress.message}
+              </p>
             )}
           </div>
 
@@ -150,7 +152,9 @@ export default function InstitutionCredentialNewPage() {
                 className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm dark:border-primary-700 dark:bg-primary-900"
               />
               {errors.certificateNumber && (
-                <p className="mt-1 text-xs text-status-revoked">{errors.certificateNumber.message}</p>
+                <p className="mt-1 text-xs text-status-revoked">
+                  {errors.certificateNumber.message}
+                </p>
               )}
             </div>
           </div>
@@ -163,7 +167,9 @@ export default function InstitutionCredentialNewPage() {
               {...register('courseName')}
               className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm dark:border-primary-700 dark:bg-primary-900"
             />
-            {errors.courseName && <p className="mt-1 text-xs text-status-revoked">{errors.courseName.message}</p>}
+            {errors.courseName && (
+              <p className="mt-1 text-xs text-status-revoked">{errors.courseName.message}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -176,7 +182,9 @@ export default function InstitutionCredentialNewPage() {
                 {...register('issueDate')}
                 className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm dark:border-primary-700 dark:bg-primary-900"
               />
-              {errors.issueDate && <p className="mt-1 text-xs text-status-revoked">{errors.issueDate.message}</p>}
+              {errors.issueDate && (
+                <p className="mt-1 text-xs text-status-revoked">{errors.issueDate.message}</p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-primary-700 dark:text-primary-200">
@@ -187,7 +195,9 @@ export default function InstitutionCredentialNewPage() {
                 {...register('expiryDate')}
                 className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm dark:border-primary-700 dark:bg-primary-900"
               />
-              {errors.expiryDate && <p className="mt-1 text-xs text-status-revoked">{errors.expiryDate.message}</p>}
+              {errors.expiryDate && (
+                <p className="mt-1 text-xs text-status-revoked">{errors.expiryDate.message}</p>
+              )}
             </div>
           </div>
 

@@ -29,9 +29,8 @@ function Root() {
     // Attempt silent session restore via refresh cookie on first load.
     (async () => {
       try {
-        const res = await api.get<ApiResponse<{ accessToken: string; user: UserDTO }>>(
-          '/auth/refresh',
-        );
+        const res =
+          await api.get<ApiResponse<{ accessToken: string; user: UserDTO }>>('/auth/refresh');
         if (res.data.success) {
           useAuthStore.getState().setAccessToken(res.data.data.accessToken);
           useAuthStore.getState().setUser(res.data.data.user);

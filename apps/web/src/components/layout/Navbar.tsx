@@ -28,7 +28,10 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-primary-100 bg-white/80 backdrop-blur dark:border-primary-800 dark:bg-surface-dark/80">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-        <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold text-primary-800 dark:text-white">
+        <Link
+          to="/"
+          className="flex items-center gap-2 font-display text-lg font-bold text-primary-800 dark:text-white"
+        >
           <ShieldCheck className="h-6 w-6 text-accent-500" aria-hidden="true" />
           CertifyChain
         </Link>
@@ -60,7 +63,10 @@ export function Navbar() {
             </Link>
           ) : (
             <>
-              <Link to="/login" className="text-sm font-medium text-primary-600 hover:text-accent-600">
+              <Link
+                to="/login"
+                className="text-sm font-medium text-primary-600 hover:text-accent-600"
+              >
                 Log in
               </Link>
               <Link
@@ -106,10 +112,16 @@ export function Navbar() {
                 </Link>
               ) : (
                 <>
-                  <Link to="/login" className="flex-1 rounded-lg border border-primary-200 px-4 py-2 text-center text-sm font-medium">
+                  <Link
+                    to="/login"
+                    className="flex-1 rounded-lg border border-primary-200 px-4 py-2 text-center text-sm font-medium"
+                  >
                     Log in
                   </Link>
-                  <Link to="/register" className="flex-1 rounded-lg bg-primary-800 px-4 py-2 text-center text-sm font-semibold text-white">
+                  <Link
+                    to="/register"
+                    className="flex-1 rounded-lg bg-primary-800 px-4 py-2 text-center text-sm font-semibold text-white"
+                  >
                     Get started
                   </Link>
                 </>

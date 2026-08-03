@@ -3,7 +3,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'sonner';
-import { registerSchema, type RegisterInput, type ApiResponse, type UserDTO, UserRole } from '@certifychain/shared';
+import {
+  registerSchema,
+  type RegisterInput,
+  type ApiResponse,
+  type UserDTO,
+  UserRole,
+} from '@certifychain/shared';
 import { PublicLayout } from '@/components/layout/PublicLayout';
 import { api, extractErrorMessage } from '@/services/api';
 import { useAuthStore } from '@/stores/authStore';
@@ -47,7 +53,10 @@ export default function RegisterPage() {
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-8 space-y-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-primary-700 dark:text-primary-200"
+            >
               Full name
             </label>
             <input
@@ -55,10 +64,15 @@ export default function RegisterPage() {
               {...register('name')}
               className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm focus:border-accent-500 focus:outline-none dark:border-primary-700 dark:bg-primary-900"
             />
-            {errors.name && <p className="mt-1 text-xs text-status-revoked">{errors.name.message}</p>}
+            {errors.name && (
+              <p className="mt-1 text-xs text-status-revoked">{errors.name.message}</p>
+            )}
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-primary-700 dark:text-primary-200"
+            >
               Email
             </label>
             <input
@@ -67,10 +81,15 @@ export default function RegisterPage() {
               {...register('email')}
               className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm focus:border-accent-500 focus:outline-none dark:border-primary-700 dark:bg-primary-900"
             />
-            {errors.email && <p className="mt-1 text-xs text-status-revoked">{errors.email.message}</p>}
+            {errors.email && (
+              <p className="mt-1 text-xs text-status-revoked">{errors.email.message}</p>
+            )}
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-primary-700 dark:text-primary-200"
+            >
               Password
             </label>
             <input
@@ -79,10 +98,14 @@ export default function RegisterPage() {
               {...register('password')}
               className="mt-1 w-full rounded-lg border border-primary-200 px-3 py-2 text-sm focus:border-accent-500 focus:outline-none dark:border-primary-700 dark:bg-primary-900"
             />
-            {errors.password && <p className="mt-1 text-xs text-status-revoked">{errors.password.message}</p>}
+            {errors.password && (
+              <p className="mt-1 text-xs text-status-revoked">{errors.password.message}</p>
+            )}
           </div>
           <div>
-            <span className="block text-sm font-medium text-primary-700 dark:text-primary-200">I am a…</span>
+            <span className="block text-sm font-medium text-primary-700 dark:text-primary-200">
+              I am a…
+            </span>
             <div className="mt-2 grid grid-cols-3 gap-2">
               {[
                 { value: UserRole.STUDENT, label: 'Student' },

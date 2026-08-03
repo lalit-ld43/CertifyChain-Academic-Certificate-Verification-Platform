@@ -1,6 +1,11 @@
 import type { Request, Response } from 'express';
 import { randomBytes } from 'node:crypto';
-import { loginSchema, registerSchema, walletChallengeRequestSchema, ErrorCode } from '@certifychain/shared';
+import {
+  loginSchema,
+  registerSchema,
+  walletChallengeRequestSchema,
+  ErrorCode,
+} from '@certifychain/shared';
 import { UserModel } from '../models/User.js';
 import { hashPassword, verifyPassword } from '../utils/passwords.js';
 import { signAccessToken, signRefreshToken, verifyRefreshToken } from '../utils/jwt.js';
@@ -21,9 +26,10 @@ const cookieOpts = {
 export async function register(req: Request, res: Response) {
   const input = registerSchema.parse(req.body);
   const existing = await UserModel.findOne({ email: input.email });
-  if (existing) throw AppError.validation('An account with this email already exists.', {
-    email: ['Email already in use'],
-  });
+  if (existing)
+    throw AppError.validation('An account with this email already exists.', {
+      email: ['Email already in use'],
+    });
 
   const passwordHash = await hashPassword(input.password);
   const user = await UserModel.create({
@@ -112,7 +118,11 @@ export async function walletVerify(req: Request, res: Response) {
 
   const record = nonceStore.get(walletAddress);
   if (!record || record.nonce !== nonce || record.expiresAt < Date.now()) {
-    throw new AppError(ErrorCode.WALLET_VERIFICATION_FAILED, 'Wallet challenge invalid or expired', 400);
+    throw new AppError(
+      ErrorCode.WALLET_VERIFICATION_FAILED,
+      'Wallet challenge invalid or expired',
+      400,
+    );
   }
   nonceStore.delete(walletAddress);
 
@@ -123,7 +133,11 @@ export async function walletVerify(req: Request, res: Response) {
 
   const existing = await UserModel.findOne({ walletAddress });
   if (existing && String(existing._id) !== req.auth.sub) {
-    throw new AppError(ErrorCode.WALLET_ALREADY_LINKED, 'This wallet is already linked to another account', 409);
+    throw new AppError(
+      ErrorCode.WALLET_ALREADY_LINKED,
+      'This wallet is already linked to another account',
+      409,
+    );
   }
 
   const user = await UserModel.findByIdAndUpdate(

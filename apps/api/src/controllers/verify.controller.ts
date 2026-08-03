@@ -60,7 +60,9 @@ export async function verifyByCredentialId(req: Request, res: Response) {
     });
   }
 
-  const institution = await InstitutionModel.findById(credential.institutionId).select('displayName');
+  const institution = await InstitutionModel.findById(credential.institutionId).select(
+    'displayName',
+  );
   const result = deriveResult(credential);
   await logVerification(req, String(credential._id), result, VerificationMethod.ID);
 
@@ -94,7 +96,11 @@ export async function verifyByShareToken(req: Request, res: Response) {
     throw new AppError('SHARE_LINK_EXPIRED' as any, 'This share link has expired', 410);
   }
   if (share.maxViews && share.viewCount >= share.maxViews) {
-    throw new AppError('SHARE_LINK_EXPIRED' as any, 'This share link has reached its view limit', 410);
+    throw new AppError(
+      'SHARE_LINK_EXPIRED' as any,
+      'This share link has reached its view limit',
+      410,
+    );
   }
 
   share.viewCount += 1;
@@ -102,7 +108,9 @@ export async function verifyByShareToken(req: Request, res: Response) {
 
   const credential = await CredentialModel.findById(share.credentialId);
   if (!credential) throw AppError.notFound('Credential not found');
-  const institution = await InstitutionModel.findById(credential.institutionId).select('displayName');
+  const institution = await InstitutionModel.findById(credential.institutionId).select(
+    'displayName',
+  );
   const result = deriveResult(credential);
   await logVerification(req, String(credential._id), result, VerificationMethod.LINK);
 

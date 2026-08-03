@@ -53,11 +53,23 @@ export default function LandingPage() {
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {[
-              { title: 'Forged documents', body: 'Screenshots and PDFs can be edited convincingly, with no easy way to check.' },
-              { title: 'Slow manual verification', body: 'Employers wait days or weeks for a registrar to confirm a single certificate.' },
-              { title: 'Repeated PII exposure', body: 'Students re-share sensitive documents with every new recruiter or platform.' },
+              {
+                title: 'Forged documents',
+                body: 'Screenshots and PDFs can be edited convincingly, with no easy way to check.',
+              },
+              {
+                title: 'Slow manual verification',
+                body: 'Employers wait days or weeks for a registrar to confirm a single certificate.',
+              },
+              {
+                title: 'Repeated PII exposure',
+                body: 'Students re-share sensitive documents with every new recruiter or platform.',
+              },
             ].map((item) => (
-              <div key={item.title} className="rounded-xl2 border border-primary-100 p-6 shadow-card dark:border-primary-800">
+              <div
+                key={item.title}
+                className="rounded-xl2 border border-primary-100 p-6 shadow-card dark:border-primary-800"
+              >
                 <h3 className="font-semibold text-primary-800 dark:text-white">{item.title}</h3>
                 <p className="mt-2 text-sm text-primary-500">{item.body}</p>
               </div>
@@ -69,7 +81,9 @@ export default function LandingPage() {
       {/* 3. How it works */}
       <section className="bg-primary-50 px-4 py-16 dark:bg-primary-950/40 sm:px-6">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-center text-2xl font-bold text-primary-900 dark:text-white">How CertifyChain works</h2>
+          <h2 className="text-center text-2xl font-bold text-primary-900 dark:text-white">
+            How CertifyChain works
+          </h2>
           <ol className="mt-10 grid gap-6 sm:grid-cols-4">
             {[
               { step: '1', title: 'Institution issues', icon: Building2 },
@@ -77,7 +91,10 @@ export default function LandingPage() {
               { step: '3', title: 'Student shares a link or QR', icon: QrCode },
               { step: '4', title: 'Recruiter verifies instantly', icon: FileCheck2 },
             ].map(({ step, title, icon: Icon }) => (
-              <li key={step} className="rounded-xl2 bg-white p-6 text-center shadow-card dark:bg-primary-900">
+              <li
+                key={step}
+                className="rounded-xl2 bg-white p-6 text-center shadow-card dark:bg-primary-900"
+              >
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent-500/10 text-accent-600">
                   <Icon className="h-6 w-6" />
                 </div>
@@ -109,9 +126,14 @@ export default function LandingPage() {
               body: 'Verify by ID, QR, link, or file hash — no account required, results in seconds.',
             },
           ].map(({ icon: Icon, title, body }) => (
-            <div key={title} className="rounded-xl2 border border-primary-100 p-8 dark:border-primary-800">
+            <div
+              key={title}
+              className="rounded-xl2 border border-primary-100 p-8 dark:border-primary-800"
+            >
               <Icon className="h-8 w-8 text-primary-700 dark:text-accent-400" />
-              <h3 className="mt-4 text-lg font-semibold text-primary-900 dark:text-white">{title}</h3>
+              <h3 className="mt-4 text-lg font-semibold text-primary-900 dark:text-white">
+                {title}
+              </h3>
               <p className="mt-2 text-sm text-primary-500">{body}</p>
             </div>
           ))}
@@ -129,7 +151,9 @@ export default function LandingPage() {
             <div className="text-xs font-semibold uppercase tracking-wide text-primary-400">
               Bachelor of Technology
             </div>
-            <div className="mt-1 text-lg font-semibold">Issued by Stellar Institute of Technology</div>
+            <div className="mt-1 text-lg font-semibold">
+              Issued by Stellar Institute of Technology
+            </div>
             <div className="mt-4">
               <StatusBadge result="valid" />
             </div>
@@ -141,11 +165,13 @@ export default function LandingPage() {
       <section className="px-4 py-16 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">
           <Lock className="mx-auto h-8 w-8 text-accent-500" />
-          <h2 className="mt-4 text-2xl font-bold text-primary-900 dark:text-white">Privacy by design</h2>
+          <h2 className="mt-4 text-2xl font-bold text-primary-900 dark:text-white">
+            Privacy by design
+          </h2>
           <p className="mx-auto mt-3 max-w-2xl text-primary-500">
             Only a cryptographic hash, wallet addresses, and timestamps ever touch the blockchain.
-            Names, grades, and documents stay in encrypted off-chain storage, under the student&apos;s
-            control.
+            Names, grades, and documents stay in encrypted off-chain storage, under the
+            student&apos;s control.
           </p>
         </div>
       </section>
