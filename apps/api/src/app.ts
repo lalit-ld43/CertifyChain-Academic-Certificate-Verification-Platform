@@ -28,9 +28,11 @@ export function createApp(): Express {
   );
   app.use(requestIdMiddleware);
   app.use(
-    pinoHttp({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (pinoHttp as any)({
       logger,
-      customProps: (req) => ({ requestId: (req as any).requestId }),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      customProps: (req: any) => ({ requestId: req.requestId }),
       redact: ['req.headers.authorization', 'req.headers.cookie'],
     }),
   );
