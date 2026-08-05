@@ -20,7 +20,7 @@
     "test:contract": "cd contracts/credential_registry && cargo test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky install"
+    "prepare": "husky install || true"
   },
   "devDependencies": {
     "prettier": "^3.3.3",
