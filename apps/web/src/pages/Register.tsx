@@ -37,7 +37,7 @@ export default function RegisterPage() {
       useAuthStore.getState().setUser(res.data.data.user);
       track(AnalyticsEvent.USER_REGISTERED, { role: values.role });
       toast.success('Account created!');
-      navigate(values.role === 'student' ? '/student/dashboard' : '/institution/application');
+      navigate(values.role === 'student' ? '/student/dashboard' : '/institution/dashboard');
     } catch (err) {
       toast.error(extractErrorMessage(err));
     } finally {
