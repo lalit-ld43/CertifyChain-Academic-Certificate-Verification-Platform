@@ -15,7 +15,7 @@ function required(name: keyof ImportMetaEnv): string {
 
 export const appEnv = {
   apiUrl: required('VITE_API_URL'),
-  stellarNetwork: (import.meta.env.VITE_STELLAR_NETWORK || 'TESTNET') as 'TESTNET' | 'PUBLIC',
+  stellarNetwork: (import.meta.env.VITE_STELLAR_NETWORK?.toUpperCase() || 'TESTNET') as 'TESTNET' | 'PUBLIC',
   stellarNetworkPassphrase: required('VITE_STELLAR_NETWORK_PASSPHRASE'),
   stellarRpcUrl: required('VITE_STELLAR_RPC_URL'),
   horizonUrl: required('VITE_HORIZON_URL'),
