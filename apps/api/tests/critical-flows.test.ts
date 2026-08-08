@@ -105,12 +105,12 @@ describe('Role authorization', () => {
 
   it('auto-creates an approved application for institution user', async () => {
     const token = await registerAndLogin('institution');
-    
+
     // Check that the institution profile was auto-created and approved during registration
     const res = await request(app)
       .get('/api/v1/institutions/me')
       .set('Authorization', `Bearer ${token}`);
-      
+
     expect(res.status).toBe(200);
     expect(res.body.data.status).toBe('approved');
   });
