@@ -55,7 +55,9 @@ export default function InstitutionDashboardPage() {
         <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-800">
           <FileText className="size-8 text-primary-400" />
         </div>
-        <h3 className="mt-4 text-lg font-medium text-primary-900 dark:text-white">No credentials issued yet</h3>
+        <h3 className="mt-4 text-lg font-medium text-primary-900 dark:text-white">
+          No credentials issued yet
+        </h3>
         <p className="mt-2 text-sm text-primary-500">
           Get started by issuing your first verifiable academic credential on the Stellar network.
         </p>
