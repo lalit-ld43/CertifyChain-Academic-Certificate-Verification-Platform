@@ -52,12 +52,17 @@ export default function InstitutionCredentialNewPage() {
       // Contract + TransactionBuilder) happens in services/contract.ts in the full
       // build; this scaffold demonstrates the signing handoff itself.
       setStep('signing');
-      const placeholderXdr = `PLACEHOLDER_UNSIGNED_XDR_FOR_${credentialId}`;
-      const signedXdr = await signWithFreighter(placeholderXdr, {
-        networkPassphrase: appEnv.stellarNetworkPassphrase,
-        address: publicKey,
-      });
-      void signedXdr; // submitted to Horizon/RPC in the full build; tx hash captured below
+      // DEMO HOTFIX: Freighter throws an error if we pass invalid XDR. 
+      // Skip the actual wallet popup for the presentation since the contract integration is Phase 6.
+      // const placeholderXdr = `PLACEHOLDER_UNSIGNED_XDR_FOR_${credentialId}`;
+      // const signedXdr = await signWithFreighter(placeholderXdr, {
+      //   networkPassphrase: appEnv.stellarNetworkPassphrase,
+      //   address: publicKey,
+      // });
+      // void signedXdr; 
+      
+      // Simulate network delay for the presentation
+      await new Promise(resolve => setTimeout(resolve, 1500));
 
       // Step 3: confirm with backend once the tx is on-chain.
       setStep('confirming');
