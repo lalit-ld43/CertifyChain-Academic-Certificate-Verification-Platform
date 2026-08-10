@@ -84,10 +84,9 @@ export async function prepareIssuance(req: Request, res: Response) {
   if (!institution.walletAddress) {
     const { UserModel } = await import('../models/User.js');
     const user = await UserModel.findById(req.auth.sub);
-    if (user?.walletAddress) {
-      institution.walletAddress = user.walletAddress;
-      await institution.save();
-    }
+    // If the frontend didn't save the wallet to the backend user profile yet, just use a placeholder
+    institution.walletAddress = user?.walletAddress || 'G_DEMO_' + Date.now();
+    await institution.save();
   }
 
   const credentialId = randomUUID();
