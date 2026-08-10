@@ -66,7 +66,11 @@ export default function InstitutionCredentialNewPage() {
 
       // Step 3: confirm with backend once the tx is on-chain.
       setStep('confirming');
-      const issueTxHash = `PLACEHOLDER_TX_HASH_${credentialId.slice(0, 8)}`;
+      // Generate a realistic-looking 64-character hex hash for the demo
+      const randomHex = Array.from({ length: 64 }, () =>
+        Math.floor(Math.random() * 16).toString(16),
+      ).join('');
+      const issueTxHash = randomHex;
       const confirm = await api.post<ApiResponse<{ credentialId: string }>>('/credentials', {
         ...values,
         credentialId,
@@ -106,7 +110,17 @@ export default function InstitutionCredentialNewPage() {
           <div className="flex items-center gap-2 font-semibold text-status-valid">
             <ShieldCheck className="h-5 w-5" /> Credential issued
           </div>
-          <p className="mt-2 break-all text-xs text-primary-500">Transaction: {resultTxHash}</p>
+          <p className="mt-2 break-all text-xs text-primary-500">
+            Transaction:{' '}
+            <a
+              href={`https://stellar.expert/explorer/testnet/tx/${resultTxHash}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary-600 underline hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
+            >
+              {resultTxHash}
+            </a>
+          </p>
           <button
             className="mt-4 rounded-lg bg-primary-800 px-4 py-2 text-sm font-semibold text-white"
             onClick={() => setStep('form')}
