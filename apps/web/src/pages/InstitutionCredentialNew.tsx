@@ -42,46 +42,40 @@ export default function InstitutionCredentialNewPage() {
       // Step 1: backend computes canonical metadata + hash (never trusts a client hash)
       setStep('preparing');
       const prep = await api.post<
-        ApiResponse<{ credentialId: string; metadataHash: string; contractId: string }>
+        ApiResponse<{
+          credentialId: string;
+          metadataHash: string;
+          contractId: string;
+          unsignedXdr: string;
+        }>
       >('/credentials/prepare', values);
       if (!prep.data.success) throw new Error(prep.data.error.message);
-      const { credentialId, metadataHash, contractId } = prep.data.data;
+      const { credentialId, metadataHash, contractId, unsignedXdr } = prep.data.data;
 
-      // Step 2: institution signs the issue_credential invocation with Freighter.
-      // NOTE: building the actual Soroban invocation XDR (via @stellar/stellar-sdk's
-      // Contract + TransactionBuilder) happens in services/contract.ts in the full
-      // build; this scaffold demonstrates the signing handoff itself.
+      // Step 2: institution signs the transaction with Freighter.
       setStep('signing');
-      // DEMO HOTFIX: Freighter throws an error if we pass invalid XDR.
-      // Skip the actual wallet popup for the presentation since the contract integration is Phase 6.
-      // const placeholderXdr = `PLACEHOLDER_UNSIGNED_XDR_FOR_${credentialId}`;
-      // const signedXdr = await signWithFreighter(placeholderXdr, {
-      //   networkPassphrase: appEnv.stellarNetworkPassphrase,
-      //   address: publicKey,
-      // });
-      // void signedXdr;
-
-      // Simulate network delay for the presentation
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // Step 3: confirm with backend once the tx is on-chain.
-      setStep('confirming');
-      // Generate a realistic-looking 64-character hex hash for the demo
-      const randomHex = Array.from({ length: 64 }, () =>
-        Math.floor(Math.random() * 16).toString(16),
-      ).join('');
-      const issueTxHash = randomHex;
-      const confirm = await api.post<ApiResponse<{ credentialId: string }>>('/credentials', {
-        ...values,
-        credentialId,
-        metadataHash,
-        documentHash: metadataHash, // placeholder until real file upload + hashing is wired
-        issueTxHash,
-        contractId,
+      if (!unsignedXdr) throw new Error('Failed to generate transaction payload from backend.');
+      const signedXdr = await signWithFreighter(unsignedXdr, {
+        networkPassphrase: appEnv.stellarNetworkPassphrase,
+        address: publicKey,
       });
+
+      // Step 3: confirm with backend once the tx is signed. Backend will submit to network.
+      setStep('confirming');
+      const confirm = await api.post<ApiResponse<{ credentialId: string; issueTxHash: string }>>(
+        '/credentials',
+        {
+          ...values,
+          credentialId,
+          metadataHash,
+          documentHash: metadataHash, // placeholder until real file upload + hashing is wired
+          signedXdr,
+          contractId,
+        },
+      );
       if (!confirm.data.success) throw new Error(confirm.data.error.message);
 
-      setResultTxHash(issueTxHash);
+      setResultTxHash(confirm.data.data.issueTxHash);
       setStep('done');
       track(AnalyticsEvent.CREDENTIAL_ISSUED);
       toast.success('Credential issued successfully.');
