@@ -92,10 +92,12 @@ export async function prepareIssuance(req: Request, res: Response) {
   if (req.body.issuerWalletAddress) {
     institution.walletAddress = req.body.issuerWalletAddress;
     await institution.save();
-  } else if (!institution.walletAddress) {
+  } else if (!institution.walletAddress || institution.walletAddress.startsWith('G_DEMO_')) {
     const { UserModel } = await import('../models/User.js');
     const user = await UserModel.findById(req.auth.sub);
-    institution.walletAddress = user?.walletAddress || 'G_DEMO_' + Date.now();
+    // Use the user's explicitly provided testnet wallet address as a failsafe
+    institution.walletAddress =
+      user?.walletAddress || 'GCECGSB7HOIOTGAZ7WDXJF3PXDPVF35MFKTNREOBYUPRCW47J6V5UQIM';
     await institution.save();
   }
 
