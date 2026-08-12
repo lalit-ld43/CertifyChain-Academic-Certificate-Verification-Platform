@@ -125,6 +125,8 @@ export async function prepareIssuance(req: Request, res: Response) {
     } catch (e) {
       // If the account doesn't exist on Testnet, automatically fund it using Friendbot!
       await fetch(`https://friendbot.stellar.org/?addr=${walletAddress}`);
+      // Give the network 2 seconds to process the funding transaction
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       sourceAccount = await horizon.loadAccount(walletAddress);
     }
 
@@ -143,9 +145,9 @@ export async function prepareIssuance(req: Request, res: Response) {
       .setTimeout(120)
       .build();
     unsignedXdr = tx.toXDR();
-  } catch (err) {
+  } catch (err: any) {
     throw AppError.validation(
-      'Institution wallet must be funded on the Testnet to issue credentials. Please fund it first!',
+      `Institution wallet (${institution.walletAddress}) must be funded on the Testnet. Friendbot auto-funding failed. Detail: ${err.message}`,
     );
   }
 
