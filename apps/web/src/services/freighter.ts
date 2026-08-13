@@ -71,12 +71,12 @@ export async function signWithFreighter(
   xdr: string,
   opts: { networkPassphrase: string; address: string },
 ): Promise<string> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result = await signTransaction(xdr, {
+    // @ts-ignore: bypass strict type checking for internal Freighter network overrides
     network: 'TESTNET',
     networkPassphrase: opts.networkPassphrase || 'Test SDF Network ; September 2015',
     accountToSign: opts.address,
-  } as any);
+  });
   if (result.error) {
     const message = String(result.error.message ?? '').toLowerCase();
     if (message.includes('reject') || message.includes('declin')) {
