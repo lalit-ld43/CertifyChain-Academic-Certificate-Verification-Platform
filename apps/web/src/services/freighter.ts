@@ -72,7 +72,7 @@ export async function signWithFreighter(
   opts: { networkPassphrase: string; address: string },
 ): Promise<string> {
   const result = await signTransaction(xdr, {
-    // @ts-ignore: bypass strict type checking for internal Freighter network overrides
+    // @ts-expect-error: bypass strict type checking for internal Freighter network overrides
     network: 'TESTNET',
     networkPassphrase: opts.networkPassphrase || 'Test SDF Network ; September 2015',
     accountToSign: opts.address,
