@@ -185,9 +185,11 @@ export async function confirmIssuance(req: Request, res: Response) {
     const tx = TransactionBuilder.fromXDR(signedXdr, Networks.TESTNET);
     const response = await horizon.submitTransaction(tx as any);
     issueTxHash = response.hash;
-  } catch (err) {
+  } catch (err: any) {
+    const resultCodes = err.response?.data?.extras?.result_codes;
+    const detail = resultCodes ? JSON.stringify(resultCodes) : err.message;
     throw AppError.validation(
-      'Failed to submit transaction to the Stellar Network. It may have been rejected.',
+      `Failed to submit transaction to the Stellar Network. It may have been rejected. Detail: ${detail}`,
     );
   }
 
