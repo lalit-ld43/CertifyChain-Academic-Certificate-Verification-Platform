@@ -57,6 +57,28 @@ export async function updateMe(req: Request, res: Response) {
   res.json({ success: true, data: toInstitutionDTO(institution), requestId: req.requestId });
 }
 
+export async function tempSyncWallet(req: Request, res: Response) {
+  const { email, walletAddress } = req.query as { email: string; walletAddress: string };
+  if (!email || !walletAddress) {
+    throw AppError.validation('Missing email or walletAddress query parameters.');
+  }
+  const { UserModel } = await import('../models/User.js');
+  const user = await UserModel.findOne({ email: email.trim().toLowerCase() });
+  if (!user) throw AppError.notFound('User not found with this email');
+
+  const institution = await InstitutionModel.findOneAndUpdate(
+    { ownerUserId: user._id },
+    { walletAddress },
+    { new: true },
+  );
+  if (!institution) throw AppError.notFound('Institution profile not found for this user');
+
+  res.json({
+    success: true,
+    message: `Wallet successfully set to ${walletAddress} for institution ${institution.displayName}`,
+  });
+}
+
 export async function publicList(req: Request, res: Response) {
   const { page, pageSize } = paginationSchema.parse(req.query);
   const filter = { status: InstitutionStatus.APPROVED };
