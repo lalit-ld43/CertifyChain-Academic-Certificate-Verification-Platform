@@ -62,6 +62,7 @@ export async function tempSyncWallet(req: Request, res: Response) {
   const { email, walletAddress } = req.query as { email: string; walletAddress: string };
   if (!email || !walletAddress) {
     throw AppError.validation('Missing email or walletAddress query parameters.');
+  }
   const user = await UserModel.findOne({ email: email.trim().toLowerCase() });
   if (!user) throw AppError.notFound('User not found with this email');
 
