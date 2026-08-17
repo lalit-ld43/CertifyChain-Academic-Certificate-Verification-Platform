@@ -46,3 +46,17 @@ export async function tempSyncWallet(req: Request, res: Response) {
     message: `Wallet successfully set to ${walletAddress} for user ${user.name}`,
   });
 }
+
+export async function debugList(req: Request, res: Response) {
+  const users = await UserModel.find({});
+  res.json({
+    success: true,
+    data: users.map((u) => ({
+      id: u._id,
+      name: u.name,
+      email: u.email,
+      role: u.role,
+      walletAddress: u.walletAddress,
+    })),
+  });
+}
