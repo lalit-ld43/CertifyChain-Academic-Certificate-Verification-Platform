@@ -51,9 +51,14 @@ async function logVerification(
 
 export async function verifyByCredentialId(req: Request, res: Response) {
   const { Types } = await import('mongoose');
-  let credential = await CredentialModel.findOne({ credentialId: req.params.credentialId });
-  if (!credential && Types.ObjectId.isValid(req.params.credentialId)) {
-    credential = await CredentialModel.findById(req.params.credentialId);
+  const credentialIdParam = req.params.credentialId;
+  let credential = null;
+
+  if (credentialIdParam) {
+    credential = await CredentialModel.findOne({ credentialId: credentialIdParam });
+    if (!credential && Types.ObjectId.isValid(credentialIdParam)) {
+      credential = await CredentialModel.findById(credentialIdParam);
+    }
   }
 
   if (!credential) {
