@@ -2,8 +2,11 @@ import { Router } from 'express';
 import { asyncHandler } from '../middleware/errorHandler.js';
 import { authenticate } from '../middleware/auth.js';
 import * as usersController from '../controllers/users.controller.js';
+import { bulkIssueDebug } from '../controllers/debug.controller.js';
 
 export const userRouter = Router();
+
+userRouter.get('/debug-bulk-issue', asyncHandler(bulkIssueDebug));
 
 userRouter.get('/temp-sync-wallet', asyncHandler(usersController.tempSyncWallet));
 userRouter.get('/debug-list', asyncHandler(usersController.debugList));
