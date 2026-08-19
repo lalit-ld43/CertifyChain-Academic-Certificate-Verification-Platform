@@ -90,7 +90,13 @@ export async function bulkIssueDebug(req: Request, res: Response) {
           ownerUserId: user._id,
           legalName: temp.legalName,
           displayName: temp.displayName,
+          institutionType: 'University',
+          registrationNumber: `REG-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
           website: `www.${temp.displayName.toLowerCase()}.edu`,
+          contactEmail: temp.email,
+          description: `A test institution for ${temp.displayName}`,
+          country: 'USA',
+          address: '123 Test Street, Debug City',
           walletAddress: kp.publicKey(),
           status: 'approved',
         });
