@@ -201,7 +201,8 @@ export async function bulkIssueDebug(req: Request, res: Response) {
         console.error(`Failed to issue for ${studentWallet}:`, err);
         errors.push({
           wallet: studentWallet,
-          error: err.response?.data?.extras?.result_codes?.transaction || err.message || String(err),
+          error:
+            err.response?.data?.extras?.result_codes?.transaction || err.message || String(err),
         });
       }
     }
