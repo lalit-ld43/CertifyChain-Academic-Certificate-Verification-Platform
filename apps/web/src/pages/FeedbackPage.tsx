@@ -107,12 +107,18 @@ export default function FeedbackPage() {
               className="mt-6 space-y-5"
             >
               <div>
-                <label className="text-xs font-semibold uppercase tracking-wider text-primary-400">
+                <label
+                  htmlFor="role"
+                  className="text-xs font-semibold uppercase tracking-wider text-primary-400"
+                >
                   Your role
                 </label>
                 <select
+                  id="role"
                   value={role}
-                  onChange={(e) => setRole(e.target.value as any)}
+                  onChange={(e) =>
+                    setRole(e.target.value as 'student' | 'institution' | 'recruiter' | 'guest')
+                  }
                   className="mt-1 block w-full rounded-lg border border-primary-200 px-3 py-2 text-sm dark:border-primary-800 dark:bg-primary-900 dark:text-white"
                 >
                   <option value="student">Student / Credential Holder</option>
@@ -124,30 +130,34 @@ export default function FeedbackPage() {
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-primary-400 block mb-1">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-primary-400 block mb-1">
                     Overall rating
-                  </label>
+                  </div>
                   {renderStars(rating, setRating)}
                 </div>
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-primary-400 block mb-1">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-primary-400 block mb-1">
                     Usability rating
-                  </label>
+                  </div>
                   {renderStars(usabilityRating, setUsabilityRating)}
                 </div>
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-primary-400 block mb-1">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-primary-400 block mb-1">
                     Trust rating
-                  </label>
+                  </div>
                   {renderStars(trustRating, setTrustRating)}
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-semibold uppercase tracking-wider text-primary-400">
+                <label
+                  htmlFor="message"
+                  className="text-xs font-semibold uppercase tracking-wider text-primary-400"
+                >
                   Feedback message
                 </label>
                 <textarea
+                  id="message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tell us about your experience (usability, speed, issues encountered)..."
@@ -158,10 +168,14 @@ export default function FeedbackPage() {
               </div>
 
               <div>
-                <label className="text-xs font-semibold uppercase tracking-wider text-primary-400">
+                <label
+                  htmlFor="improvementSuggestion"
+                  className="text-xs font-semibold uppercase tracking-wider text-primary-400"
+                >
                   Improvement suggestions (Optional)
                 </label>
                 <textarea
+                  id="improvementSuggestion"
                   value={improvementSuggestion}
                   onChange={(e) => setImprovementSuggestion(e.target.value)}
                   placeholder="Any features or updates you'd like to see?"
