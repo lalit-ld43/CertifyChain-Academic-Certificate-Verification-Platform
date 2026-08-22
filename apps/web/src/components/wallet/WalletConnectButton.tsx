@@ -34,7 +34,7 @@ export function WalletConnectButton() {
         toast.error(err.message);
       } else if (err instanceof SignatureRejectedError) {
         setStatus('rejected');
-        toast.error('Connection request was rejected.');
+        toast.error('Connection request rejected. Please unlock Freighter and try again.');
       } else {
         setError(err instanceof Error ? err.message : 'Could not connect wallet');
         toast.error('Something went wrong connecting your wallet.');
@@ -53,13 +53,16 @@ export function WalletConnectButton() {
   }
 
   return (
-    <button
-      onClick={handleConnect}
-      disabled={busy}
-      className="inline-flex items-center gap-2 rounded-lg bg-primary-800 px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-60"
-    >
-      {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Wallet className="h-4 w-4" />}
-      {busy ? 'Connecting…' : 'Connect Freighter'}
-    </button>
+    <div className="flex flex-col items-center">
+      <button
+        onClick={handleConnect}
+        disabled={busy}
+        className="inline-flex w-full md:w-auto justify-center items-center gap-2 rounded-lg bg-primary-800 px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Wallet className="h-4 w-4" />}
+        {busy ? 'Connecting…' : 'Connect Freighter'}
+      </button>
+      <p className="text-xs text-slate-500 mt-2">Click to connect your Stellar wallet</p>
+    </div>
   );
 }
