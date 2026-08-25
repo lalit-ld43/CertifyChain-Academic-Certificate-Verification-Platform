@@ -52,6 +52,20 @@ contracts/         Soroban smart contract (Rust)
 | Blockchain | Stellar Testnet |
 | Smart Contract | Soroban (Rust) |
 
+## Product Screenshots
+
+### Product UI
+- **Dashboard Overview**:
+  ![Dashboard Screenshot](./images/product_UI.png)
+  
+### Mobile Responsive Design
+- **Mobile View**: Fully responsive across all devices.
+  ![Mobile Design](./images/mobile_responsive.png)
+
+### Analytics Dashboard
+- **Live Telemetry & Verification**:
+  ![Analytics Dashboard](./images/monitoring_dashboard.png)
+
 ## Users Onboarded
 
 Below is the list of users who actively tested the platform and provided feedback:
