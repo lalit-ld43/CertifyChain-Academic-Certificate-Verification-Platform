@@ -3,7 +3,7 @@
 > A production-ready Stellar dApp where institutions issue verifiable academic credentials, students hold them, and employers instantly verify on-chain proofs without manual background checks.
 
 ## 🚀 Quick Links
-- **Live Platform**: [certifychain.vercel.app](https://certifychain.vercel.app) *(Placeholder)*
+- **Live Platform**: [certifychain.vercel.app](https://certify-chain-academic-certificate.vercel.app/)
 - **Demo Video**: [Watch the Demo](https://drive.google.com/file/d/1WSV6MVlQKfstvySNlAqYRVm9AudT2UV_/view?usp=sharing)
 - **Contract Deployment Address**: `CBVSXZHSAFAVTTCD4AUU7RXIL6FX26NZQ7RSXTYTFB2L3RDQU3PCOJ4Q`
 - **User Feedback Form**: [CertifyChain Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLSdpyani5-iJCVfaJXmDxVOQFlRyZB2dXKn0EV-p6XN7sfIjPw/viewform)
