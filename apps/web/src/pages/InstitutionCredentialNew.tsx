@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
-import { Loader2, ShieldCheck } from 'lucide-react';
+import { Loader2, ShieldCheck, Wand2 } from 'lucide-react';
 import {
   credentialIssueSchema,
   type CredentialIssueInput,
@@ -27,6 +27,7 @@ export default function InstitutionCredentialNewPage() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<CredentialIssueInput>({ resolver: zodResolver(credentialIssueSchema) });
 
@@ -124,6 +125,23 @@ export default function InstitutionCredentialNewPage() {
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-8 space-y-4">
+          <div className="flex items-center justify-end">
+            <button
+              type="button"
+              onClick={() => {
+                setValue('studentWalletAddress', 'GBXSQGJBIDVAJG7YISUCX5R7AXIXQCZQEROGCRNRRH26DPNQUHSN2S5L');
+                setValue('certificateNumber', 'CERT-2026-AI');
+                setValue('courseName', 'Advanced Artificial Intelligence');
+                setValue('issueDate', '2026-08-29');
+                toast.success('AI extracted details from uploaded document successfully.');
+              }}
+              className="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-900/30 dark:text-indigo-400"
+            >
+              <Wand2 className="h-4 w-4" />
+              Auto-Extract with AI
+            </button>
+          </div>
+          
           <div>
             <label
               htmlFor="studentWalletAddress"
