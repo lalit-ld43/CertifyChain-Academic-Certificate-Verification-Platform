@@ -63,10 +63,15 @@ export default function InstitutionsPage() {
                   <h3 className="font-display font-semibold text-primary-900 dark:text-white">
                     {inst.displayName}
                   </h3>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-status-active/10 px-2.5 py-0.5 text-2xs font-semibold text-status-active">
-                    <ShieldCheck className="h-3 w-3" />
-                    Verified
-                  </span>
+                  <div className="flex flex-col items-end gap-1">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-status-active/10 px-2.5 py-0.5 text-2xs font-semibold text-status-active">
+                      <ShieldCheck className="h-3 w-3" />
+                      Verified
+                    </span>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-yellow-100 px-2.5 py-0.5 text-2xs font-semibold text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-500">
+                      ★ 98/100 Trust Score
+                    </span>
+                  </div>
                 </div>
 
                 <p className="mt-1 text-xs text-primary-400 font-mono break-all">
