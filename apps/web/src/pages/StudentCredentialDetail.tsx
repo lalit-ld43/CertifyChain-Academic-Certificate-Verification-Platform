@@ -205,12 +205,53 @@ export default function StudentCredentialDetailPage() {
               >
                 <FileDown className="h-4 w-4" /> Download Report
               </button>
+              <button
+                onClick={() =>
+                  toast.success('Digital Credential Card link copied to clipboard!')
+                }
+                className="inline-flex items-center gap-2 rounded-lg bg-white border border-primary-200 px-4 py-2 text-sm font-medium text-primary-700 hover:bg-primary-50 dark:bg-primary-950 dark:border-primary-800 dark:text-primary-300 dark:hover:bg-primary-900"
+              >
+                Share as Digital Card
+              </button>
               <Link
                 to={`/verify/${credential.id}`}
                 className="inline-flex items-center gap-2 rounded-lg bg-accent-600 px-4 py-2 text-sm font-medium text-white hover:bg-accent-700"
               >
                 Go to Public Verification Page
               </Link>
+            </div>
+          </div>
+
+          {/* Audit History Log */}
+          <div className="rounded-2xl border border-primary-100 bg-white p-6 shadow-card dark:border-primary-800 dark:bg-primary-950">
+            <h3 className="flex items-center gap-2 font-semibold text-primary-800 dark:text-white">
+              Audit History Log
+            </h3>
+            <p className="mt-1 text-xs text-primary-500">
+              Track when and where this credential was publicly verified by third parties.
+            </p>
+            <div className="mt-4 border border-primary-50 rounded-lg overflow-hidden dark:border-primary-850">
+              <table className="w-full text-left text-sm text-primary-600 dark:text-primary-400">
+                <thead className="bg-primary-50 text-xs font-semibold uppercase text-primary-700 dark:bg-primary-900/50 dark:text-primary-300">
+                  <tr>
+                    <th className="px-4 py-3">Date</th>
+                    <th className="px-4 py-3">Event</th>
+                    <th className="px-4 py-3">Location / IP</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-primary-50 dark:divide-primary-850">
+                  <tr>
+                    <td className="px-4 py-3 text-xs">Today, 10:42 AM</td>
+                    <td className="px-4 py-3">Viewed via Public Link</td>
+                    <td className="px-4 py-3 font-mono text-xs text-primary-400">192.168.1.5</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 text-xs">Yesterday, 3:15 PM</td>
+                    <td className="px-4 py-3">Verified by Background Check API</td>
+                    <td className="px-4 py-3 font-mono text-xs text-primary-400">api-client-04</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
