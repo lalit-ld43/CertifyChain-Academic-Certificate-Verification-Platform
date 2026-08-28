@@ -15,6 +15,8 @@ export default function VerifyCredentialPage() {
   const [fileComparing, setFileComparing] = useState(false);
   const [fileResult, setFileResult] = useState<VerificationResultDTO | null>(null);
 
+  const [simpleMode, setSimpleMode] = useState(false);
+
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['verify', credentialId],
     queryFn: async () => {
@@ -53,10 +55,24 @@ export default function VerifyCredentialPage() {
   return (
     <PublicLayout>
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6">
-        <h1 className="font-display text-2xl font-bold text-primary-900 dark:text-white">
-          Verification result
-        </h1>
-        <p className="mt-1 break-all text-xs text-primary-400">Credential ID: {credentialId}</p>
+        <div className="flex items-center justify-between mb-2">
+          <h1 className="font-display text-2xl font-bold text-primary-900 dark:text-white">
+            Verification result
+          </h1>
+          <button
+            onClick={() => setSimpleMode(!simpleMode)}
+            className="text-xs font-medium bg-primary-100 px-3 py-1.5 rounded-full text-primary-700 hover:bg-primary-200 dark:bg-primary-800 dark:text-primary-300 transition"
+          >
+            {simpleMode ? 'Switch to Technical View' : 'Switch to Simple View'}
+          </button>
+        </div>
+        {!simpleMode ? (
+          <p className="mt-1 break-all text-xs text-primary-400">Credential ID: {credentialId}</p>
+        ) : (
+          <p className="mt-1 text-sm text-primary-500">
+            We are checking if this certificate is real and exactly as the school issued it.
+          </p>
+        )}
 
         {isLoading && (
           <div className="mt-8 flex items-center gap-2 rounded-xl2 border border-primary-100 p-6 text-primary-500 dark:border-primary-800">
