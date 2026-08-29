@@ -6,8 +6,8 @@
 - **Live Platform**: [certifychain.vercel.app](https://certify-chain-academic-certificate.vercel.app/)
 - **Demo Video**: [Watch the Demo](https://drive.google.com/file/d/1WSV6MVlQKfstvySNlAqYRVm9AudT2UV_/view?usp=sharing)
 - **Contract Deployment Address**: `CBVSXZHSAFAVTTCD4AUU7RXIL6FX26NZQ7RSXTYTFB2L3RDQU3PCOJ4Q`
-- **User Feedback Form**: [CertifyChain Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLSdpyani5-iJCVfaJXmDxVOQFlRyZB2dXKn0EV-p6XN7sfIjPw/viewform)
-- **User Feedback Responses**: [View Responses Sheet Link](https://docs.google.com/spreadsheets/d/10DTjiTcudefdawKpVzW1mtRQenlJTWqGwp3PAQ95iZE/edit?gid=350563831#gid=350563831)
+- **User Feedback Form**: [CertifyChain Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLSdoGbHqtJAjAQThWy038XeJTEK5Qo7j__YsZJTvjNcYw4YIiQ/viewform?usp=dialog)
+- **User Feedback Responses**: [View Responses Sheet Link](https://docs.google.com/spreadsheets/d/13lqbGkeS8QIqcxy-_OJl33PqrdJdYPjagx_IGlQT3xM/edit?usp=sharing)
 
 ---
 
