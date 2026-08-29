@@ -52,6 +52,24 @@ contracts/         Soroban smart contract (Rust)
 | Blockchain | Stellar Testnet |
 | Smart Contract | Soroban (Rust) |
 
+## CI/CD & Automated Deployments
+
+CertifyChain relies on a robust CI/CD pipeline to ensure code quality and seamless deployments:
+
+### 1. Blocking Contract Checks & Tests
+Every pull request and push to `main` triggers our GitHub Actions pipeline (`ci.yml`), which enforces strict, blocking checks for both the frontend and the smart contract. The contract pipeline enforces:
+- `cargo fmt --check` (Formatting integrity)
+- `cargo clippy -- -D warnings` (Strict linting)
+- `cargo test` (Unit and integration tests for escrow, issuance, and metadata)
+None of these checks are bypassed; a failure blocks the deployment.
+
+### 2. Frontend Deployment (Vercel)
+The production React frontend is fully deployed and hosted on **Vercel**. We utilize the official Vercel GitHub App integration rather than manual CLI steps in GitHub Actions. This integration automatically detects pushes to the `main` branch, pulls the latest environment variables (including the deployed testnet contract IDs), and builds/deploys the frontend seamlessly. The live URL is documented in the Quick Links section above.
+
+### 3. Soroban Contract Deployment
+We maintain a complete, automated testnet deployment workflow (`deploy.yml`). This workflow compiles the Rust contract to WebAssembly (`wasm32-unknown-unknown`), optimizes it using the Stellar CLI, generates fresh deployer identities, and executes `stellar contract deploy` to the Stellar Testnet. This guarantees that the contract binary perfectly matches the open-source repository code.
+
+
 ## Product Screenshots
 
 ### Product UI

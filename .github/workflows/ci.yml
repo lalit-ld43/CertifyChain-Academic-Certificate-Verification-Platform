@@ -66,6 +66,14 @@ jobs:
             contracts/credential_registry/target
           key: ${{ runner.os }}-cargo-${{ hashFiles('contracts/credential_registry/Cargo.lock') }}
 
+      - name: Run contract formatting check
+        working-directory: contracts/credential_registry
+        run: cargo fmt -- --check
+
+      - name: Run contract clippy checks
+        working-directory: contracts/credential_registry
+        run: cargo clippy -- -D warnings
+
       - name: Run contract tests
         working-directory: contracts/credential_registry
-        run: cargo test || echo "Ignoring cargo test failure due to ed25519-dalek crate ecosystem issue"
+        run: cargo test
