@@ -206,9 +206,7 @@ export default function StudentCredentialDetailPage() {
                 <FileDown className="h-4 w-4" /> Download Report
               </button>
               <button
-                onClick={() =>
-                  toast.success('Digital Credential Card link copied to clipboard!')
-                }
+                onClick={() => toast.success('Digital Credential Card link copied to clipboard!')}
                 className="inline-flex items-center gap-2 rounded-lg bg-white border border-primary-200 px-4 py-2 text-sm font-medium text-primary-700 hover:bg-primary-50 dark:bg-primary-950 dark:border-primary-800 dark:text-primary-300 dark:hover:bg-primary-900"
               >
                 Share as Digital Card

@@ -29,12 +29,13 @@ export default function StudentDashboardPage() {
         <MetricCard label="Claimed" value={claimed} Icon={Wallet} loading={isLoading} />
         <MetricCard label="Share views" value={0} Icon={Eye} loading={isLoading} />
       </div>
-      
+
       <div className="mt-8 rounded-xl bg-gradient-to-r from-accent-600 to-indigo-600 p-6 shadow-md text-white flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold font-display">Get the Mobile App</h2>
           <p className="text-sm mt-1 text-accent-50 opacity-90">
-            Share credentials on the go. Scan the QR code or click to download the app for iOS and Android.
+            Share credentials on the go. Scan the QR code or click to download the app for iOS and
+            Android.
           </p>
         </div>
         <button className="hidden sm:block shrink-0 px-4 py-2 bg-white text-accent-700 font-semibold rounded-lg hover:bg-accent-50 transition shadow-sm text-sm">

@@ -129,7 +129,10 @@ export default function InstitutionCredentialNewPage() {
             <button
               type="button"
               onClick={() => {
-                setValue('studentWalletAddress', 'GBXSQGJBIDVAJG7YISUCX5R7AXIXQCZQEROGCRNRRH26DPNQUHSN2S5L');
+                setValue(
+                  'studentWalletAddress',
+                  'GBXSQGJBIDVAJG7YISUCX5R7AXIXQCZQEROGCRNRRH26DPNQUHSN2S5L',
+                );
                 setValue('certificateNumber', 'CERT-2026-AI');
                 setValue('courseName', 'Advanced Artificial Intelligence');
                 setValue('issueDate', '2026-08-29');
@@ -141,7 +144,7 @@ export default function InstitutionCredentialNewPage() {
               Auto-Extract with AI
             </button>
           </div>
-          
+
           <div>
             <label
               htmlFor="studentWalletAddress"

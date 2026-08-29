@@ -62,32 +62,58 @@ export default function InstitutionDashboardPage() {
         <div className="mt-6 flex h-48 items-end gap-2 px-2">
           {/* Mocked bar chart representing monthly verifications */}
           <div className="w-1/6 bg-accent-200 dark:bg-accent-900/40 rounded-t-md h-[30%] relative group">
-            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-primary-600 hidden group-hover:block">120</span>
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400">Jan</span>
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-primary-600 hidden group-hover:block">
+              120
+            </span>
+            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400">
+              Jan
+            </span>
           </div>
           <div className="w-1/6 bg-accent-300 dark:bg-accent-800/50 rounded-t-md h-[45%] relative group">
-            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-primary-600 hidden group-hover:block">180</span>
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400">Feb</span>
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-primary-600 hidden group-hover:block">
+              180
+            </span>
+            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400">
+              Feb
+            </span>
           </div>
           <div className="w-1/6 bg-accent-400 dark:bg-accent-700/60 rounded-t-md h-[60%] relative group">
-            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-primary-600 hidden group-hover:block">240</span>
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400">Mar</span>
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-primary-600 hidden group-hover:block">
+              240
+            </span>
+            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400">
+              Mar
+            </span>
           </div>
           <div className="w-1/6 bg-accent-500 dark:bg-accent-600/80 rounded-t-md h-[85%] relative group">
-            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-primary-600 hidden group-hover:block">340</span>
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400">Apr</span>
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-primary-600 hidden group-hover:block">
+              340
+            </span>
+            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400">
+              Apr
+            </span>
           </div>
           <div className="w-1/6 bg-accent-600 dark:bg-accent-500 rounded-t-md h-[100%] relative shadow-[0_0_15px_rgba(var(--color-accent-500),0.5)] group">
-            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-accent-600 hidden group-hover:block">400</span>
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400 font-semibold">May</span>
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-accent-600 hidden group-hover:block">
+              400
+            </span>
+            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400 font-semibold">
+              May
+            </span>
           </div>
           <div className="w-1/6 bg-accent-200 dark:bg-accent-900/40 rounded-t-md h-[25%] relative group">
-            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-primary-600 hidden group-hover:block">100</span>
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400">Jun</span>
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-primary-600 hidden group-hover:block">
+              100
+            </span>
+            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-primary-400">
+              Jun
+            </span>
           </div>
         </div>
         <div className="mt-8 pt-4 border-t border-primary-100 flex justify-between text-sm text-primary-500 dark:border-primary-800">
-          <span>Total verifications this year: <strong>1,380</strong></span>
+          <span>
+            Total verifications this year: <strong>1,380</strong>
+          </span>
           <span className="text-status-active flex items-center gap-1">↑ 24% from last year</span>
         </div>
       </div>
