@@ -6,7 +6,7 @@ use soroban_sdk::{
     Address, BytesN, Env,
 };
 
-use crate::{CredentialRegistry, CredentialRegistryClient, ContractError};
+use crate::{ContractError, CredentialRegistry, CredentialRegistryClient};
 
 fn setup() -> (Env, CredentialRegistryClient<'static>, Address) {
     let env = Env::default();

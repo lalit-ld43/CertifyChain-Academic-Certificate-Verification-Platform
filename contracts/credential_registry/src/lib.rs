@@ -9,11 +9,13 @@ mod types;
 mod test;
 
 pub use errors::ContractError;
-pub use types::{CredentialRecord, CredentialStatus, DataKey, InstitutionRecord, InstitutionStatus};
+pub use types::{
+    CredentialRecord, CredentialStatus, DataKey, InstitutionRecord, InstitutionStatus,
+};
 
 use storage::{
-    credential_exists as storage_credential_exists, extend_instance_ttl, get_admin,
-    get_credential, get_institution, has_admin, set_admin, set_credential, set_institution,
+    credential_exists as storage_credential_exists, extend_instance_ttl, get_admin, get_credential,
+    get_institution, has_admin, set_admin, set_credential, set_institution,
 };
 
 #[contract]
@@ -113,7 +115,8 @@ impl CredentialRegistry {
     ) -> Result<(), ContractError> {
         issuer.require_auth();
 
-        let institution = get_institution(&env, &issuer).ok_or(ContractError::InstitutionNotFound)?;
+        let institution =
+            get_institution(&env, &issuer).ok_or(ContractError::InstitutionNotFound)?;
         match institution.status {
             InstitutionStatus::Approved => {}
             InstitutionStatus::Suspended => return Err(ContractError::InstitutionSuspended),
@@ -143,10 +146,8 @@ impl CredentialRegistry {
         };
         set_credential(&env, &credential_id, &record);
 
-        env.events().publish(
-            (symbol_short!("cred_iss"), issuer, student),
-            credential_id,
-        );
+        env.events()
+            .publish((symbol_short!("cred_iss"), issuer, student), credential_id);
         Ok(())
     }
 
@@ -217,11 +218,17 @@ impl CredentialRegistry {
         storage_credential_exists(&env, &credential_id)
     }
 
-    pub fn get_institution(env: Env, institution: Address) -> Result<InstitutionRecord, ContractError> {
+    pub fn get_institution(
+        env: Env,
+        institution: Address,
+    ) -> Result<InstitutionRecord, ContractError> {
         get_institution(&env, &institution).ok_or(ContractError::InstitutionNotFound)
     }
 
-    pub fn get_credential(env: Env, credential_id: BytesN<32>) -> Result<CredentialRecord, ContractError> {
+    pub fn get_credential(
+        env: Env,
+        credential_id: BytesN<32>,
+    ) -> Result<CredentialRecord, ContractError> {
         get_credential(&env, &credential_id).ok_or(ContractError::CredentialNotFound)
     }
 }
