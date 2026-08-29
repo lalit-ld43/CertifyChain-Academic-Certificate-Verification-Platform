@@ -1,9 +1,10 @@
-# CertifyChain — Academic Certificate Verification on Stellar
+# CertifyChain — Academic Certificate Verification on Stellar
 
 > A production-ready Stellar dApp where institutions issue verifiable academic credentials, students hold them, and employers instantly verify on-chain proofs without manual background checks.
 
 ## 🚀 Quick Links
 - **Live Platform**: [certifychain.vercel.app](https://certify-chain-academic-certificate.vercel.app/)
+- **Pitch Deck**: [View Presentation](https://docs.google.com/presentation/d/13pd059zisi1wjfR0lvftII6THCnOS9Ao/edit?usp=sharing&ouid=114494973489055894068&rtpof=true&sd=true)
 - **Demo Video**: [Watch the Demo](https://drive.google.com/file/d/1WSV6MVlQKfstvySNlAqYRVm9AudT2UV_/view?usp=sharing)
 - **Contract Deployment Address**: `CBVSXZHSAFAVTTCD4AUU7RXIL6FX26NZQ7RSXTYTFB2L3RDQU3PCOJ4Q`
 - **User Feedback Form**: [CertifyChain Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLSdoGbHqtJAjAQThWy038XeJTEK5Qo7j__YsZJTvjNcYw4YIiQ/viewform?usp=dialog)
@@ -194,7 +195,7 @@ Below is the verified on-chain proof for every user boarded onto the platform du
 - [x] **Public GitHub repository:** Complete.
 - [x] **Minimum 20+ meaningful commits:** Complete (80+ commits).
 - [x] **Live deployed application:** [Live Platform](https://certify-chain-academic-certificate.vercel.app/)
-- [x] **PPT/Pitch deck link:** [Insert Pitch Deck Link Here]
+- [x] **PPT/Pitch deck link:** [View Presentation](https://docs.google.com/presentation/d/13pd059zisi1wjfR0lvftII6THCnOS9Ao/edit?usp=sharing&ouid=114494973489055894068&rtpof=true&sd=true)
 - [x] **Demo video link:** [Watch Demo Video](https://drive.google.com/file/d/1WSV6MVlQKfstvySNlAqYRVm9AudT2UV_/view?usp=sharing)
 - [x] **Proof of 50+ users:** See Google Sheet and On-chain Transactions table above.
 - [x] **Screenshots of analytics or transaction activity:** See Stellar Expert links in the proof table.
