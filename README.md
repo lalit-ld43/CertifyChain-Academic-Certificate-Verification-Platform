@@ -193,9 +193,9 @@ Below is the verified on-chain proof for every user boarded onto the platform du
 
 - [x] **Public GitHub repository:** Complete.
 - [x] **Minimum 20+ meaningful commits:** Complete (80+ commits).
-- [x] **Live deployed application:** [Live Platform](https://certifychain-academic-certificate-verification-platform.vercel.app/)
+- [x] **Live deployed application:** [Live Platform](https://certify-chain-academic-certificate.vercel.app/)
 - [x] **PPT/Pitch deck link:** [Insert Pitch Deck Link Here]
-- [x] **Demo video link:** [Insert Demo Video Link Here]
+- [x] **Demo video link:** [Watch Demo Video](https://drive.google.com/file/d/1WSV6MVlQKfstvySNlAqYRVm9AudT2UV_/view?usp=sharing)
 - [x] **Proof of 50+ users:** See Google Sheet and On-chain Transactions table above.
 - [x] **Screenshots of analytics or transaction activity:** See Stellar Expert links in the proof table.
 - [x] **Updated README and documentation:** Complete.
